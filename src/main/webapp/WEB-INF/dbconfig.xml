@@ -30,6 +30,7 @@
 		<property name="mapperLocations">
 		    <list>
 		      <value>classpath:/META-INF/mappers/admin_mapper.xml</value>
+		      <value>classpath:/META-INF/mappers/notice_mapper.xml</value>
 		    </list>
 	  </property>
 	</bean>
