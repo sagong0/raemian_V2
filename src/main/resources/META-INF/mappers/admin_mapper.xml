@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="raemian.admin.mapper.AdminMapper">
+	
+	<select id="findAllAdmins" resultType="raemian.admin.domain.AdminMember">
+	select * from ad_membership
+	</select>
+	
+	<select id="findAdminsByCurrentPage" resultType="raemian.admin.domain.AdminMember">
+	SELECT * FROM ad_membership
+	LIMIT #{pNo},5;
+	</select>
+	
+	<select id="findAdminsByArea" resultType="raemian.admin.domain.AdminMember">
+	SELECT * FROM ad_membership
+	WHERE
+	aarea = #{aarea}
+	</select>
+	
+	<select id="findAdminsByAreaAndPage" parameterType="Map" resultType="raemian.admin.domain.AdminMember">
+	SELECT * FROM ad_membership
+	WHERE
+	aarea = #{aarea}
+	LIMIT #{pNo},5;
+	</select>
+	
+	<select id="findOne" resultType="raemian.admin.domain.AdminMember">
+	select * from ad_membership
+	where aid = #{aid}
+	</select>
+	
+	<!-- 
+	//	aidx,aarea,adept,aname,aid,apw,aemail,atel,aposition,try_count,ause,aindate
+	 -->
+
+	<insert id="saveAdmin" parameterType="raemian.admin.dto.JoinAdminDto">
+	insert into ad_membership
+	VALUES('0',#{aarea}, #{adept}, #{aname}, #{aid}, password(#{apw1}), #{aemail}, #{atel}, #{aposition}, 0, "Y", now())
+	</insert>
+	
+	<select id="isUser" parameterType="raemian.admin.dto.AdminLoginDto" resultType="raemian.admin.domain.AdminMember">
+	select * from ad_membership
+	where aid = #{aid} and
+	apw = password(#{apw})
+	</select>
+	
+	<update id="updateTryCount">
+	UPDATE ad_membership
+	SET try_count = try_count+1
+	WHERE aid = #{aid}
+	</update>
+	
+	<update id="updateAuse">
+	UPDATE ad_membership
+	SET AUSE = 'N'
+	WHERE aid = #{aid}
+	OR try_count >= 5
+	</update>
+	
+	<update id="update_status" parameterType="Map">
+	UPDATE ad_membership
+	SET ause = 
+	<choose>
+	<when test="status==1">
+	'Y'
+	</when>
+	<otherwise>
+	'N'
+	</otherwise>
+	</choose>
+	WHERE
+	aidx=#{aidx}
+	</update>
+	
+</mapper>
