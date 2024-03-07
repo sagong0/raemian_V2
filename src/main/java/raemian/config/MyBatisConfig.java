@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 import raemian.admin.mapper.AdminMapper;
 import raemian.admin.mapper.AdminNoticeMapper;
 import raemian.admin.repository.AdminNoticeRepoImpl;
-import raemian.admin.repository.AdminNoticeRepository;
 import raemian.admin.repository.AdminRepository;
 import raemian.admin.repository.AdminRepositoryImpl;
+import raemian.common.NoticeRepository;
 
 @Configuration
 @RequiredArgsConstructor
@@ -24,7 +24,7 @@ public class MyBatisConfig {
 	}
 	
 	@Bean
-	AdminNoticeRepository noticeRepository() {
+	NoticeRepository noticeRepository() {
 		return new AdminNoticeRepoImpl(noticeMapper);
 	}
 	

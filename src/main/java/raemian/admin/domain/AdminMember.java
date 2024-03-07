@@ -8,7 +8,7 @@ import lombok.ToString;
 
 
 @Getter @Setter @ToString
-public class AdminMember {
+public class AdminMember{
 	private int aidx;
 	private String aarea, adept, aname, aid,apw;
 	private String aemail, atel, aposition;

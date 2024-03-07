@@ -1,4 +1,4 @@
-package raemian.utils;
+package raemian.common;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import raemian.admin.domain.AdminMember;
+import raemian.admin.domain.Notice;
 
 @Getter @ToString
 public class Paging {
@@ -22,16 +23,21 @@ public class Paging {
 	private int endPage;
 	// 페이징의 개수
 	private int pagingCount;
+	
 	// 관리자 리스트 데이터
 	private List<AdminMember> admins;
 	
+	// 공지사항 리스트 데이터 
+	private List<Notice> notices;
+	
 	
 	// size 추가 : 한 화면에 보여질 행의 수.
-	public Paging(int total, int currentPage, int size,int pagingCount, List<AdminMember> admins) {
+	public Paging(int total, int currentPage, int size,int pagingCount, List<AdminMember> admins, List<Notice> notices) {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.pagingCount = pagingCount;
 		this.admins = admins;
+		this.notices = notices;
 		
 		
 		if(total == 0) { // select 결과가 없다면...

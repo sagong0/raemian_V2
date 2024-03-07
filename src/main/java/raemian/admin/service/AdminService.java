@@ -29,7 +29,6 @@ public class AdminService {
 	 * currentPage -> (currentPage-1) * 5
 	 */
 	public List<AdminMember> findAdminListByCurrentPage(int currentPage){
-		System.out.println("currentPage is " + currentPage);
 		int pNo = (currentPage - 1) * 5;
 		return adminRepository.findAdminsByCurrentPage(pNo);
 	}

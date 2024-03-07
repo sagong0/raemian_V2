@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.AdminMember;
 import raemian.admin.dto.StatusDto;
 import raemian.admin.service.AdminService;
-import raemian.utils.Paging;
+import raemian.common.Paging;
 
 @Controller
 @RequestMapping("/main")
@@ -47,7 +47,6 @@ public class AdminMainController {
 		
 		if(aarea == null || aarea.isEmpty() || aarea.equals("") || aarea.equals("all")) {
 			admins = adminService.findAdminListByCurrentPage(currentPage);
-//			admins = adminService.findAdminsByAreaAndPage(aarea, currentPage);
 			total = adminService.count_admins(aarea);
 		} else {
 			admins = adminService.findAdminsByAreaAndPage(aarea, currentPage);
@@ -55,7 +54,7 @@ public class AdminMainController {
 		}
 		
 		model.addAttribute("admins", admins);
-		model.addAttribute("list", new Paging(total, currentPage, 5, 5, admins));
+		model.addAttribute("list", new Paging(total, currentPage, 5, 5, admins, null));
 		return "admin/view/config_main";
 	}
 	

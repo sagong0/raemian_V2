@@ -125,10 +125,6 @@ List<AdminMember> admins = (List<AdminMember>) request.getAttribute("admins");
 
 					<div class="propagebt">
 						<ul>
-						<!-- <li>&lt;</li>
-						<li>1</li> 
-						<li style="margin-right: 0px;">&gt;</li>
-						--> 
 						<c:set var="aarea" value="${param.aarea}" />
 						<!-- Previous 시작 -->
 							<li style="color: white;" 

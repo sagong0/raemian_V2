@@ -82,6 +82,6 @@
 </section>
 </main>
 <%@ include file="./fragments/footer.jsp" %>
-<script src="../js/menus.js?v=1"></script>
+<script src="../js/menus.js?v=2"></script>
 </body>
 </html>
