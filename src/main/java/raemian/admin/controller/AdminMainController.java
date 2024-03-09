@@ -2,7 +2,9 @@ package raemian.admin.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,7 @@ import raemian.admin.domain.AdminMember;
 import raemian.admin.dto.StatusDto;
 import raemian.admin.service.AdminService;
 import raemian.common.Paging;
+import raemian.consts.SessionConst;
 
 @Controller
 @RequestMapping("/main")
@@ -27,7 +30,10 @@ public class AdminMainController {
 	private final AdminService adminService;
 	
 	@GetMapping("/")
-	public String main() {
+	public String main(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Object asdf = session.getAttribute(SessionConst.LOGIN_MEMBER);;		
+		System.out.println("session is " + asdf);
 		return "admin/view/admin_main";
 	}
 

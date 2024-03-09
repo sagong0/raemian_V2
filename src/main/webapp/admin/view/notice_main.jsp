@@ -17,6 +17,7 @@ List<Notice> notices = (List<Notice>) request.getAttribute("notices");
 <link rel="stylesheet" href="../css/notice.css?v=">
 <!-- 신규추가된 css 파일 끝-->
 <title>관리자 페이지</title>
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js?v=2"></script>
 </head>
 <body>
 <%@ include file="./fragments/header.jsp" %>
@@ -94,6 +95,6 @@ List<Notice> notices = (List<Notice>) request.getAttribute("notices");
 </main>
 <!-- 공지사항 관리 끝 -->
 <%@ include file="./fragments/footer.jsp" %>
-<script src="../js/notice_main.js?v=4"></script>
+<script src="../js/notice_main.js?v=5"></script>
 </body>
 </html>

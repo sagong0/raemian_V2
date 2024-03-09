@@ -29,10 +29,10 @@
        <li>글쓴이</li>
        <li><input type="text" class="notice_in in2" readonly></li> <li style="height:520px;">내용</li>
        <li style="height:520px; padding-top: 10px;">
-       <textarea class="notice_in in3"></textarea>
-       </li>       
+       <textarea name="ncontent" class="notice_in in3"></textarea>
+       </li>
        <li>첨부파일</li>
-       <li><input type="file"></li>   
+       <li><input type="file" name="nfile"></li>   
        </ol>
        <span class="notice_btns">
        <input type="button" value="글등록" class="meno_btn2">
@@ -45,4 +45,7 @@
 <!-- 공지사항 등록 끝 -->
 <%@ include file="./fragments/footer.jsp"%>
 </body>
+<script>
+CKEDITOR.replace('editor1');
+</script>
 </html>

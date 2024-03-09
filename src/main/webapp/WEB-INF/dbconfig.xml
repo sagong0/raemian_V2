@@ -38,4 +38,21 @@
 	<bean id="sqlsession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlsessionfactory" />
 	</bean>
+	
+	
+	<!-- 인터셉터 빈 등록 -->
+    <bean id="myInterceptor" class="raemian.interceptor.LoginCheckInterceptor" />
+    <mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 적용할 URL 패턴 -->
+			<mvc:mapping path="/**"/> 
+			<!-- 제외할 URL 패턴 -->
+        	<mvc:exclude-mapping path="/admin/**"/>
+        	<mvc:exclude-mapping path="/*.ico"/>
+        	<mvc:exclude-mapping path="/css/**"/>
+        	<mvc:exclude-mapping path="/error/**"/>
+			<bean class="raemian.interceptor.LoginCheckInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 </beans>

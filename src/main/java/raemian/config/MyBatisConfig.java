@@ -13,7 +13,7 @@ import raemian.common.NoticeRepository;
 
 @Configuration
 @RequiredArgsConstructor
-public class MyBatisConfig {
+public class MybatisConfig{
 	
 	private final AdminMapper adminMapper;
 	private final AdminNoticeMapper noticeMapper;
@@ -27,5 +27,4 @@ public class MyBatisConfig {
 	NoticeRepository noticeRepository() {
 		return new AdminNoticeRepoImpl(noticeMapper);
 	}
-	
 }

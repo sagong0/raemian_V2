@@ -33,12 +33,9 @@ import raemian.consts.SessionConst;
 public class AdminLoginController {
 	private final AdminService adminService;
 	
-	PrintWriter pw = null;
 
 	@GetMapping("/")
 	public String home() {
-//		List<AdminMember> members = adminService.admin_members();
-
 		return "admin/view/index";
 	}
 
@@ -114,28 +111,15 @@ public class AdminLoginController {
 		/**
 		 * 아디,비번 맞았지만... 해당 계정 정지 상태 일 때
 		 */
-		if (adminOptional.get().getAuse().equals("N")) {
-			this.pw = response.getWriter();
-			this.pw.write("<script>"
-					+ "alert('해당 계정은 5회 이상 로그인 실패로 정지 되었습니다."
-					+ "관리자에게 문의해 주세요.');"
-					+ "history.go(-1);"
-					+ "</script>");
-			this.pw.close();
-		}
+	    if (adminOptional.get().getAuse().equals("N")) {
+	        model.addAttribute("loginFail", "해당 계정은 5회 이상 로그인 실패로 정지 되었습니다."
+	                + "관리자에게 문의해 주세요.");
+	        return "admin/view/index";
+	    }
 
 		// 성공로직
-		HttpSession session = request.getSession();
-		session.setAttribute(SessionConst.LOGIN_MEMBER, adminOptional.get());
-		this.pw = response.getWriter();
-		this.pw.write("<script>"
-				+ "alert('상공적으로 로그인 되셨습니다.');"
-				+ "location.href='../main/';"
-				+ "</script>");
-		
-		if(this.pw != null) {
-			this.pw.close();
-		}
+	    HttpSession session = request.getSession();
+	    session.setAttribute(SessionConst.LOGIN_MEMBER, adminOptional.get());
 		return "redirect:/main/";
 	}
 

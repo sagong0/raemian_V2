@@ -17,7 +17,6 @@
 	 <!-- Resource 쓸꺼임  -->
 	 <context:component-scan base-package="raemian"/>
 	 
-	 
 	<!-- 파일 업로드 기능 추가 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="utf-8"/>
