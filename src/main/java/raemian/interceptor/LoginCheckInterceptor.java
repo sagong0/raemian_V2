@@ -14,14 +14,15 @@ public class LoginCheckInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("hey this interceptor is called 1111");
 		String requestURI = request.getRequestURI();
 		HttpSession session = request.getSession(false);
+		
+		System.out.println("interceptor start");
 		
 		if(session == null || session.getAttribute(SessionConst.LOGIN_MEMBER) == null) {
 			// 미인증 사용자 감지 로직
 			// login 으로 redirect 시킬 것
-			response.sendRedirect("/login?redirectURL="+requestURI);
+			response.sendRedirect("/raemian/admin/?redirectURL="+requestURI);
 			return false;
 		}
 

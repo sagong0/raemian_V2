@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +35,7 @@ import raemian.consts.SessionConst;
 public class AdminLoginController {
 	private final AdminService adminService;
 	
+	private Logger log = LoggerFactory.getLogger(AdminLoginController.class);
 
 	@GetMapping("/")
 	public String home() {
@@ -71,7 +74,7 @@ public class AdminLoginController {
 	@PostMapping("/login")
 	public String adminLogin(@Validated @ModelAttribute AdminLoginDto loginDto, BindingResult bindingResult,
 			HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-		response.setContentType("text/html; charset=utf-8;");
+		System.out.println("uuuuuuu");
 
 		if (bindingResult.hasErrors()) {
 			return "admin/view/index";

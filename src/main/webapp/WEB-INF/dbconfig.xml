@@ -49,7 +49,9 @@
 			<!-- 제외할 URL 패턴 -->
         	<mvc:exclude-mapping path="/admin/**"/>
         	<mvc:exclude-mapping path="/*.ico"/>
+        	<mvc:exclude-mapping path="/img/**"/>
         	<mvc:exclude-mapping path="/css/**"/>
+        	<mvc:exclude-mapping path="/js/**"/>
         	<mvc:exclude-mapping path="/error/**"/>
 			<bean class="raemian.interceptor.LoginCheckInterceptor" />
 		</mvc:interceptor>

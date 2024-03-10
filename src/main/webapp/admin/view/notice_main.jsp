@@ -10,14 +10,14 @@ List<Notice> notices = (List<Notice>) request.getAttribute("notices");
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../css/page_default.css?v=">
-<link rel="stylesheet" href="../css/admin_css.css?v=">
+<link rel="stylesheet" href="../css/page_default.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" href="../css/admin_css.css?v=<%=System.currentTimeMillis()%>">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
 <!-- 신규추가된 css 파일 -->
 <link rel="stylesheet" href="../css/notice.css?v=">
 <!-- 신규추가된 css 파일 끝-->
 <title>관리자 페이지</title>
-<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js?v=2"></script>
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js?<%=System.currentTimeMillis()%>"></script>
 </head>
 <body>
 <%@ include file="./fragments/header.jsp" %>
@@ -95,6 +95,6 @@ List<Notice> notices = (List<Notice>) request.getAttribute("notices");
 </main>
 <!-- 공지사항 관리 끝 -->
 <%@ include file="./fragments/footer.jsp" %>
-<script src="../js/notice_main.js?v=5"></script>
+<script src="../js/notice_main.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>
