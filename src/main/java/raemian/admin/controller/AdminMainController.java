@@ -32,8 +32,7 @@ public class AdminMainController {
 	@GetMapping("/")
 	public String main(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		Object asdf = session.getAttribute(SessionConst.LOGIN_MEMBER);;		
-		System.out.println("session is " + asdf);
+		Object asdf = session.getAttribute(SessionConst.LOGIN_MEMBER);;
 		return "admin/view/admin_main";
 	}
 

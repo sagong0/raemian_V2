@@ -1,5 +1,6 @@
 package raemian.admin.service;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,13 +9,17 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.Notice;
+import raemian.admin.dto.NoticeForm;
 import raemian.common.NoticeRepository;
+import raemian.common.UploadFile;
+import raemian.common.service.FileSaveService;
 
 @Service
 @RequiredArgsConstructor
 public class AdminNoticeService {
 	
 	private final NoticeRepository noticeRepository;
+	private final FileSaveService fileSaveService;
 	
 	public List<Notice> findAllNotices(){
 		return noticeRepository.findAll();
@@ -49,8 +54,6 @@ public class AdminNoticeService {
 	}
 	
 	
-	
-	
 	public int count_notices(String searchWord) {
 		int total = 0;
 		if(searchWord == null || searchWord.isEmpty()) {
@@ -60,5 +63,22 @@ public class AdminNoticeService {
 		}
 		
 		return total;
+	}
+	
+	// 공지사항 저장
+	public int saveNotice(NoticeForm noticeForm) {
+		// 첨부파일 없을때
+		if(noticeForm.getNfile() == null ) {
+			noticeRepository.saveNotice(noticeForm);
+		} else {
+			// 첨부파일 있을 때
+//			try {
+////				UploadFile storedFile = fileSaveService.storeFile(noticeForm.getNfile());
+//				
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+		}
+		return 0;
 	}
 }

@@ -22,4 +22,16 @@
 	LIMIT #{pNo},3
 	</select>
 	
+	<insert id="saveNotice" parameterType="raemian.admin.dto.NoticeForm">
+	INSERT INTO notice
+	VALUES ('0',#{ntitle},#{nwriter},#{ncontent},
+	<if test="nfile != null and !nfile.isEmpty()">
+    #{nfile}
+    </if>
+    <if test="nfile == null or nfile.isEmpty()">
+    ''
+    </if>
+	,0,now())
+	</insert>
+	
 </mapper>

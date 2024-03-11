@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.Notice;
+import raemian.admin.dto.NoticeForm;
 import raemian.admin.mapper.AdminNoticeMapper;
 import raemian.common.NoticeRepository;
 
@@ -37,5 +38,18 @@ public class AdminNoticeRepoImpl implements NoticeRepository{
 		
 		return noticeMapper.findBySearchWordAndCurrentPage(maps);
 	}
+
+	@Override
+	public Notice saveNotice(NoticeForm noticeForm) {
+		int result = noticeMapper.saveNotice(noticeForm);
+		
+		if(result > 0) {
+			// 성공로직
+		} else {
+			// 실패로직 
+		}
+		return null;
+	}
+
 
 }

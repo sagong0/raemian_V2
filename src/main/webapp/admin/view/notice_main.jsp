@@ -55,7 +55,7 @@ List<Notice> notices = (List<Notice>) request.getAttribute("notices");
         <li>${loop.index+1}</li>
         <li style="text-align: left; justify-content: flex-start;">${notice.ntitle}</li>
         <li>${not empty notice.nfile ? 'O' : 'X'}</li>
-        <li>${notice.count}</li>
+        <li>${notice.ncount}</li>
         <li>${notice.nwriter}</li>
         <li>${notice.nindate}</li>
         <li>
