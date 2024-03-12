@@ -35,20 +35,12 @@ public class AdminNoticeRepoImpl implements NoticeRepository{
 
 	@Override
 	public List<Notice> findBySearchWordAndCurrentPage(Map<String, Object> maps) {
-		
 		return noticeMapper.findBySearchWordAndCurrentPage(maps);
 	}
 
 	@Override
-	public Notice saveNotice(NoticeForm noticeForm) {
-		int result = noticeMapper.saveNotice(noticeForm);
-		
-		if(result > 0) {
-			// 성공로직
-		} else {
-			// 실패로직 
-		}
-		return null;
+	public int saveNotice(NoticeForm noticeForm) {
+		return noticeMapper.saveNotice(noticeForm);
 	}
 
 

@@ -1,10 +1,11 @@
 package raemian.admin.service;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -12,14 +13,16 @@ import raemian.admin.domain.Notice;
 import raemian.admin.dto.NoticeForm;
 import raemian.common.NoticeRepository;
 import raemian.common.UploadFile;
-import raemian.common.service.FileSaveService;
+import raemian.common.service.CdnService;
 
 @Service
 @RequiredArgsConstructor
 public class AdminNoticeService {
 	
+	Logger log = LoggerFactory.getLogger(AdminNoticeService.class);
+	
 	private final NoticeRepository noticeRepository;
-	private final FileSaveService fileSaveService;
+	private final CdnService cdnService;
 	
 	public List<Notice> findAllNotices(){
 		return noticeRepository.findAll();
@@ -67,18 +70,19 @@ public class AdminNoticeService {
 	
 	// 공지사항 저장
 	public int saveNotice(NoticeForm noticeForm) {
+		int result = 0;
+		
 		// 첨부파일 없을때
-		if(noticeForm.getNfile() == null ) {
-			noticeRepository.saveNotice(noticeForm);
+		if(noticeForm.getNfile() == null || noticeForm.getNfile().isEmpty()) {
+			log.info("no nfile");
+			result = noticeRepository.saveNotice(noticeForm);
 		} else {
-			// 첨부파일 있을 때
-//			try {
-////				UploadFile storedFile = fileSaveService.storeFile(noticeForm.getNfile());
-//				
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
+			// 첨부파일 있을 때 (notice save + CDN UPLOAD)
+			log.info("yes nfile");
+			UploadFile uploadFile = cdnService.uploadFile(noticeForm.getNfile());
+			noticeForm.setStoreFileName(uploadFile.getStoreFileName());
+			result = noticeRepository.saveNotice(noticeForm);
 		}
-		return 0;
+		return result;
 	}
 }

@@ -12,18 +12,10 @@ import raemian.common.UploadFile;
 public class Notice {
 	private int nidx;
 	private String ntitle, nwriter, ncontent;
-	private UploadFile nfile;
+	private String nfile;
+	private String originalFileName;
+	private String storeFileName;
 	private int ncount;
 	private LocalDate nindate;
-	
-	public Notice(String ntitle, String nwriter, String ncontent, UploadFile nfile, int ncount, LocalDate nindate) {	
-		this.ntitle = ntitle;
-		this.nwriter = nwriter;
-		this.ncontent = ncontent;
-		this.nfile = nfile;
-		this.ncount = ncount;
-		this.nindate = nindate;
-	}
-	
 	
 }

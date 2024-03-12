@@ -32,7 +32,9 @@ AdminMember loginedMember = (AdminMember) session.getAttribute("loginMember");
 		       <li>공지제목</li>
 		       <li><input type="text" name="ntitle" class="notice_in in1"></li>
 		       <li>글쓴이</li>
-		       <li><input type="text" name="nwriter" class="notice_in in2" value="<%=loginedMember.getAname()%>" readonly></li> 
+		       <li>
+		       <input type="text" name="nwriter" class="notice_in in2" value="<%=loginedMember.getAname()%>" readonly>
+		       </li> 
 		       <li style="height:520px;">내용</li>
 		       <li style="height:520px; padding-top: 10px;">
 		       <textarea name="ncontent" class="notice_in in3"></textarea>

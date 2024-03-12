@@ -40,6 +40,9 @@ public class AdminNoticeController {
 		// 검색어 없을 경우
 		if(isSearchWordEmpty(searchWord)) {
 			notices = noticeService.findNoticesByCurrentPage(currentPage);
+			for(Notice notice : notices) {
+				log.info("notice nfile = {}", notice.getNfile());
+			}
 		} else {
 			// 검색어 있을 경우
 			notices = noticeService.findBySearchWordAndCurrentPage(searchWord, currentPage);
@@ -60,11 +63,11 @@ public class AdminNoticeController {
 	public String noticeSave(@ModelAttribute NoticeForm noticeForm, BindingResult bindingResult) {
 		log.info("noticeForm is {}" , noticeForm);
 		
-//		if(bindingResult.hasErrors()) {
-//			return "admin/view/notice_write";
-//		}
-//		// 성공 로직
-//		noticeService.saveNotice(noticeForm);
+		if(bindingResult.hasErrors()) {
+			return "admin/view/notice_write";
+		}
+		// 성공 로직
+		noticeService.saveNotice(noticeForm);
 		
 		return null;
 	}

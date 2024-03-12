@@ -12,5 +12,7 @@ import lombok.ToString;
 public class NoticeForm {
 	@NotEmpty(message = "작성 양식을 확인해주세요.")
 	private String ntitle, nwriter, ncontent;
+	private String originalFileName;
+	private String storeFileName;
 	private MultipartFile nfile;
 }
