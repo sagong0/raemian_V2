@@ -43,5 +43,10 @@ public class AdminNoticeRepoImpl implements NoticeRepository{
 		return noticeMapper.saveNotice(noticeForm);
 	}
 
+	@Override
+	public int delNotice(int nidx) {
+		return noticeMapper.delNotice(nidx);
+	}
+
 
 }

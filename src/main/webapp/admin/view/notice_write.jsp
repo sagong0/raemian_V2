@@ -1,6 +1,7 @@
 <%@page import="raemian.admin.domain.AdminMember"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 AdminMember loginedMember = (AdminMember) session.getAttribute("loginMember");
 %>
@@ -53,8 +54,14 @@ AdminMember loginedMember = (AdminMember) session.getAttribute("loginMember");
 </div> 
 </section>
 </main>
+
 <!-- 공지사항 등록 끝 -->
 <%@ include file="./fragments/footer.jsp"%>
+
+<c:if=test="${not empty failMsg}">
+<script>alert("${failMsg}");</script>
+</c:if>
+
 <script src="../js/notice_write.js?<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>

@@ -9,17 +9,20 @@
 	
 	<select id="findByCurrentPage" resultType="raemian.admin.domain.Notice">
 	SELECT * FROM notice
+	order by nidx desc
 	LiMIT #{pNo},3
 	</select>
 	
 	<select id="findBySearchWord" resultType="raemian.admin.domain.Notice">
 	SELECT * FROM notice
 	WHERE ntitle LIKE concat ('%',#{searchWord},'%')
+	order by nidx desc
 	</select>
 	
 	<select id="findBySearchWordAndCurrentPage" resultType="raemian.admin.domain.Notice">
 	SELECT * FROM notice
 	WHERE ntitle LIKE concat ('%',#{searchWord},'%')
+	order by nidx desc
 	LIMIT #{pNo},3
 	</select>
 	
@@ -34,5 +37,10 @@
     </if>
 	,0,now())
 	</insert>
+	
+	<delete id="delNotice">
+	DELETE FROM notice
+	WHERE nidx=#{nidx}
+	</delete>
 	
 </mapper>

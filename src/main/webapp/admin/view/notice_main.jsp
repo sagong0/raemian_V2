@@ -59,7 +59,7 @@ List<Notice> notices = (List<Notice>) request.getAttribute("notices");
         <li>${notice.nwriter}</li>
         <li>${notice.nindate}</li>
         <li>
-            <input type="button" value="삭제" class="delbtn">
+            <input type="button" onclick="notice_delete(${notice.nidx});" value="삭제" class="delbtn">
         </li>
        </ul>
        </c:forEach>
@@ -95,6 +95,11 @@ List<Notice> notices = (List<Notice>) request.getAttribute("notices");
 </main>
 <!-- 공지사항 관리 끝 -->
 <%@ include file="./fragments/footer.jsp" %>
+<c:if test="${not empty successMsg}">
+<script>
+alert("${successMsg}");
+</script>
+</c:if>
 <script src="../js/notice_main.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>

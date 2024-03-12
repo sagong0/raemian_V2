@@ -17,4 +17,6 @@ public interface NoticeRepository {
 	List<Notice> findBySearchWordAndCurrentPage(Map<String, Object> maps);
 	
 	int saveNotice(NoticeForm noticeForm);
+	
+	int delNotice(int nidx);
 }

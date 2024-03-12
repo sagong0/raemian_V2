@@ -85,4 +85,9 @@ public class AdminNoticeService {
 		}
 		return result;
 	}
+	
+	// 공지사항 삭제 
+	public int delete_notice(int nidx) {
+		return noticeRepository.delNotice(nidx);
+	}
 }
