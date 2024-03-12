@@ -21,4 +21,6 @@ public interface AdminNoticeMapper {
 	int saveNotice(NoticeForm noticeForm);
 	
 	int delNotice(int nidx);
+	
+	Notice findByIdx(int nidx);
 }

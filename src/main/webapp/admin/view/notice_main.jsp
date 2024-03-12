@@ -53,7 +53,8 @@ List<Notice> notices = (List<Notice>) request.getAttribute("notices");
        <c:forEach var="notice" items="${notices}" varStatus="loop">
        <ul>
         <li>${loop.index+1}</li>
-        <li style="text-align: left; justify-content: flex-start;">${notice.ntitle}</li>
+        <li style="text-align: left; justify-content: flex-start;"
+        onclick="notice_detail(${notice.nidx});">${notice.ntitle}</li>
         <li>${not empty notice.nfile ? 'O' : 'X'}</li>
         <li>${notice.ncount}</li>
         <li>${notice.nwriter}</li>

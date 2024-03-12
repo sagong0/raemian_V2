@@ -48,5 +48,11 @@ public class AdminNoticeRepoImpl implements NoticeRepository{
 		return noticeMapper.delNotice(nidx);
 	}
 
+	@Override
+	public Notice findByNidx(int nidx) {
+	
+		return noticeMapper.findByIdx(nidx);
+	}
+
 
 }

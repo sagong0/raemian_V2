@@ -7,6 +7,14 @@
 	SELECT * FROM notice
 	</select>
 	
+	
+	<select id="findByIdx" resultType="raemian.admin.domain.Notice">
+	SELECT * FROM notice
+	WHERE nidx=#{nidx}
+	</select>
+	
+	
+	
 	<select id="findByCurrentPage" resultType="raemian.admin.domain.Notice">
 	SELECT * FROM notice
 	order by nidx desc

@@ -86,6 +86,13 @@ public class AdminNoticeService {
 		return result;
 	}
 	
+	// nidx 로 찾기 
+	public Notice findNoticeByNidx(int nidx) {
+		return noticeRepository.findByNidx(nidx);
+	};
+	
+	
+	
 	// 공지사항 삭제 
 	public int delete_notice(int nidx) {
 		return noticeRepository.delNotice(nidx);

@@ -19,4 +19,6 @@ public interface NoticeRepository {
 	int saveNotice(NoticeForm noticeForm);
 	
 	int delNotice(int nidx);
+	
+	Notice findByNidx(int nidx);
 }

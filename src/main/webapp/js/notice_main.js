@@ -38,3 +38,17 @@ function notice_delete(nidx){
 		form.submit();
 	}
 }
+
+/**
+ * 공지 디테일
+ */
+function notice_detail(nidx){
+	if(nidx == ""){
+		return;
+	}
+	location.href=`./detail/${nidx}`;
+}
+
+
+
+
