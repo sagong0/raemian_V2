@@ -58,7 +58,7 @@ AdminMember loginedMember = (AdminMember) session.getAttribute("loginMember");
 <!-- 공지사항 등록 끝 -->
 <%@ include file="./fragments/footer.jsp"%>
 
-<c:if=test="${not empty failMsg}">
+<c:if test="${not empty failMsg}">
 <script>alert("${failMsg}");</script>
 </c:if>
 

@@ -32,10 +32,5 @@
             </beans:list>
         </beans:property>
     </beans:bean>
-    
-    <!-- Service 계층에서 사용할 프로퍼티 값 주입 -->
-    <beans:bean id="fileSave" class="raemian.common.service.FileSaveService">
-        <beans:property name="fileDir" value="${file.dir}" />
-    </beans:bean>
 	
 </beans:beans>

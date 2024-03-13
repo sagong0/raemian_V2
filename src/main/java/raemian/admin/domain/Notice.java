@@ -18,4 +18,5 @@ public class Notice {
 	private int ncount;
 	private LocalDate nindate;
 	
+	
 }

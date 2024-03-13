@@ -1,9 +1,16 @@
 package raemian.admin.controller;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,13 +20,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriUtils;
 
 import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.Notice;
 import raemian.admin.dto.NoticeForm;
 import raemian.admin.service.AdminNoticeService;
 import raemian.common.Paging;
+import raemian.common.service.CdnService;
 
 @RequestMapping("/notice")
 @RequiredArgsConstructor
@@ -27,6 +37,7 @@ import raemian.common.Paging;
 public class AdminNoticeController {
 	
 	private final AdminNoticeService noticeService;
+	private final CdnService cdnService;
 	
 	Logger log = LoggerFactory.getLogger(AdminNoticeController.class);
 	
@@ -58,7 +69,7 @@ public class AdminNoticeController {
 	}
 	
 	@PostMapping("/write")
-	public String noticeSave(@ModelAttribute NoticeForm noticeForm, BindingResult bindingResult) {
+	public String noticeSave(@ModelAttribute NoticeForm noticeForm, BindingResult bindingResult) throws IOException {
 		
 		if(bindingResult.hasErrors()) {
 			return "admin/view/notice_write";
@@ -77,16 +88,9 @@ public class AdminNoticeController {
 		if(findNotice == null) {
 			return "admin/view/notice_write";
 		}
-		log.info("******");
-		log.info("notice = {}", findNotice);
-		log.info("******");
 		model.addAttribute("notice", findNotice);
 		return "admin/view/notice_view";
 	}
-	
-	
-	
-	
 	
 	
 	@PostMapping("/delete")
@@ -99,6 +103,26 @@ public class AdminNoticeController {
 			return "admin/view/notice/write";
 		}
 		return "redirect:/notice/";
+	}
+	
+	/**
+	 * 첨부파일 다운로드
+	 * @throws MalformedURLException 
+	 */
+	@GetMapping("/attach/{nidx}")
+	public ResponseEntity<Resource> downloadAttach(@PathVariable int nidx) throws MalformedURLException {
+		log.info("nidx = {}", nidx);
+		Notice findNotice = noticeService.findNoticeByNidx(nidx);
+		String fileName = findNotice.getNfile();
+		UrlResource resource = new UrlResource("file:" + cdnService.getFullPath(fileName));
+		
+		String encodedUploadFilename = UriUtils.encode(fileName, StandardCharsets.UTF_8);
+
+        // 다운로드시 헤더에 아래와같이 추가해줘야함 (규약)
+        String contentDisposition = "attachment; filename=\"" + encodedUploadFilename +"\"";
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION,contentDisposition)
+                .body(resource);
 	}
 	
 	

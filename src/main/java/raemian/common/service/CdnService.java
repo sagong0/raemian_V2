@@ -92,7 +92,6 @@ public class CdnService {
     // 확장자 추출 메서드
     private String extractExt(String originalFilename) {
         int pos = originalFilename.lastIndexOf(".");
-        return originalFilename.substring(pos+1);
-    
+        return originalFilename.substring(pos+1);  
     }
 }

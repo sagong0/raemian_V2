@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,9 @@ import raemian.common.service.CdnService;
 public class AdminNoticeService {
 	
 	Logger log = LoggerFactory.getLogger(AdminNoticeService.class);
+	
+	@Value("${cdn_url}")
+	private String cdn_url;
 	
 	private final NoticeRepository noticeRepository;
 	private final CdnService cdnService;
@@ -69,16 +73,14 @@ public class AdminNoticeService {
 	}
 	
 	// 공지사항 저장
-	public int saveNotice(NoticeForm noticeForm) {
+	public int saveNotice(NoticeForm noticeForm){
 		int result = 0;
 		
 		// 첨부파일 없을때
 		if(noticeForm.getNfile() == null || noticeForm.getNfile().isEmpty()) {
-			log.info("no nfile");
 			result = noticeRepository.saveNotice(noticeForm);
 		} else {
 			// 첨부파일 있을 때 (notice save + CDN UPLOAD)
-			log.info("yes nfile");
 			UploadFile uploadFile = cdnService.uploadFile(noticeForm.getNfile());
 			noticeForm.setStoreFileName(uploadFile.getStoreFileName());
 			result = noticeRepository.saveNotice(noticeForm);
@@ -86,15 +88,27 @@ public class AdminNoticeService {
 		return result;
 	}
 	
+	
 	// nidx 로 찾기 
 	public Notice findNoticeByNidx(int nidx) {
 		return noticeRepository.findByNidx(nidx);
 	};
 	
-	
-	
 	// 공지사항 삭제 
 	public int delete_notice(int nidx) {
 		return noticeRepository.delNotice(nidx);
 	}
+	
+	
+	
+	
+	
+	
+	
+	/** 편의 메서드 **/
+    public String getFullPath(String fileName){
+        return cdn_url + fileName;
+    }
+    
 }
+

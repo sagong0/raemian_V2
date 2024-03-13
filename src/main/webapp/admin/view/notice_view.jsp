@@ -29,16 +29,16 @@
        <li>공지제목</li>
        <li class="text_in">${notice.ntitle}</li>
        <li>글쓴이</li>
-       <li class="text_in">${notice.nwriter }</li> 
+       <li class="text_in">${notice.nwriter}</li> 
        <li style="height:520px;">내용</li>
        <li style="height:520px; padding-top: 10px;">
        <div class="text_in2">${notice.ncontent}</div>
        </li>       
        <li>첨부파일</li>
-       <li class="text_in" style="cursor: pointer;">${notice.nfile}</li>   
+       <li class="text_in" style="cursor: pointer;" onclick="download_attach(${notice.nidx});">${notice.nfile}</li>
        </ol>
        <span class="notice_btns">
-       <input type="button" value="목록" class="meno_btn2" onclick="">
+       <input type="button" value="목록" class="meno_btn2" onclick="to_noticeList();">
        </span>
        </section>
     </div>
@@ -48,5 +48,6 @@
 
 <!-- 공지사항 등록 끝 -->
 <%@ include file="./fragments/footer.jsp"%>
+<script src="../../js/notice_view.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>
