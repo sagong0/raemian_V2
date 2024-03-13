@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.Notice;
 import raemian.admin.dto.NoticeForm;
 import raemian.admin.mapper.AdminNoticeMapper;
-import raemian.common.NoticeRepository;
+import raemian.common.repository.NoticeRepository;
 
 
 @Repository

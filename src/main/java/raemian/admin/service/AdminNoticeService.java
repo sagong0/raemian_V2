@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.Notice;
 import raemian.admin.dto.NoticeForm;
-import raemian.common.NoticeRepository;
 import raemian.common.UploadFile;
+import raemian.common.repository.NoticeRepository;
 import raemian.common.service.CdnService;
 
 @Service

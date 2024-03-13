@@ -1,4 +1,4 @@
-package raemian.common;
+package raemian.common.repository;
 
 import java.util.List;
 import java.util.Map;

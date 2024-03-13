@@ -11,8 +11,11 @@ import raemian.admin.repository.AdminFaqRepoImpl;
 import raemian.admin.repository.AdminNoticeRepoImpl;
 import raemian.admin.repository.AdminRepository;
 import raemian.admin.repository.AdminRepositoryImpl;
-import raemian.common.FaqRepository;
-import raemian.common.NoticeRepository;
+import raemian.common.mapper.ClientMemberMapper;
+import raemian.common.repository.ClientMemberRepository;
+import raemian.common.repository.ClientMemberRepositoryImpl;
+import raemian.common.repository.FaqRepository;
+import raemian.common.repository.NoticeRepository;
 
 @Configuration
 @RequiredArgsConstructor
@@ -21,6 +24,7 @@ public class MybatisConfig{
 	private final AdminMapper adminMapper;
 	private final AdminNoticeMapper noticeMapper;
 	private final AdminFaqMapper faqMapper;
+//	private final ClientMemberMapper clientMemberMapper;
 	
 	@Bean
 	AdminRepository adminRepository() {
@@ -36,4 +40,9 @@ public class MybatisConfig{
 	FaqRepository faqRepository() {
 		return new AdminFaqRepoImpl(faqMapper);
 	}
+//	
+//	@Bean
+//	ClientMemberRepository clientMemberRepository() {
+//		return new ClientMemberRepositoryImpl(clientMemberMapper);
+//	}
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.Faq;
 import raemian.admin.dto.FaqForm;
-import raemian.common.FaqRepository;
+import raemian.common.repository.FaqRepository;
 
 @Service
 @RequiredArgsConstructor

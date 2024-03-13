@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.Faq;
 import raemian.admin.dto.FaqForm;
 import raemian.admin.mapper.AdminFaqMapper;
-import raemian.common.FaqRepository;
+import raemian.common.repository.FaqRepository;
 
 
 @Repository
