@@ -18,8 +18,8 @@ public class AdminFaqRepoImpl implements FaqRepository{
 	private final AdminFaqMapper faqMapper;
 
 	@Override
-	public List<Faq> findAll() {
-		return faqMapper.findAll();
+	public List<Faq> findByCurrentPage(int pNo) {
+		return faqMapper.findByCurrentPage(pNo);
 	}
 
 	@Override
@@ -30,5 +30,10 @@ public class AdminFaqRepoImpl implements FaqRepository{
 	@Override
 	public int deleteByFidx(int fidx) {
 		return faqMapper.deleteByFidx(fidx);
+	}
+
+	@Override
+	public int countAll() {
+		return faqMapper.countAll();
 	}
 }

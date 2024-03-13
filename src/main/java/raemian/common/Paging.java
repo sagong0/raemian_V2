@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import raemian.admin.domain.AdminMember;
+import raemian.admin.domain.Faq;
 import raemian.admin.domain.Notice;
 
 @Getter @ToString
@@ -30,14 +31,18 @@ public class Paging {
 	// 공지사항 리스트 데이터 
 	private List<Notice> notices;
 	
+	// Faq list
+	private List<Faq> faqs;
+	
 	
 	// size 추가 : 한 화면에 보여질 행의 수.
-	public Paging(int total, int currentPage, int size,int pagingCount, List<AdminMember> admins, List<Notice> notices) {
+	public Paging(int total, int currentPage, int size,int pagingCount, List<AdminMember> admins, List<Notice> notices,List<Faq> faqs) {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.pagingCount = pagingCount;
 		this.admins = admins;
 		this.notices = notices;
+		this.faqs = faqs;
 		
 		
 		if(total == 0) { // select 결과가 없다면...

@@ -13,8 +13,6 @@
 	WHERE nidx=#{nidx}
 	</select>
 	
-	
-	
 	<select id="findByCurrentPage" resultType="raemian.admin.domain.Notice">
 	SELECT * FROM notice
 	order by nidx desc
@@ -38,7 +36,7 @@
 	INSERT INTO notice
 	VALUES ('0',#{ntitle},#{nwriter},#{ncontent},
 	<if test="nfile != null and !nfile.isEmpty()">
-        #{storeFileName}
+        #{nfile}
     </if>
     <if test="nfile == null or nfile.isEmpty()">
         ''

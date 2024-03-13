@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="raemian.admin.mapper.AdminFaqMapper">
 	
-	<select id="findAll" resultType="raemian.admin.domain.Faq">
+	<select id="findByCurrentPage" resultType="raemian.admin.domain.Faq">
 	SELECT * from faq
 	order by fidx desc
+	limit #{pNo},5
+	</select>
+	
+	<select id="countAll" resultType="int">
+	SELECT count(*)
+	FROM faq
 	</select>
 	
 	<insert id="saveFaq" parameterType="raemian.admin.dto.FaqForm">

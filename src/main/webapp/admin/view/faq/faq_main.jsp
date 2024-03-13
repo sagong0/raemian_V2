@@ -78,7 +78,15 @@
        <aside>
         <div class="page_number">
            <ul>
-           <li>1</li>      
+           <!-- Page번호 시작 -->
+			<c:forEach var="pNo" begin="${list.startPage}" end="${list.endPage}" step="1">
+				<li style="color:white;"
+				onclick="faqPagination(${pNo});"
+				class="<c:if test='${param.currentPage eq pNo}'>active</c:if>">
+				${pNo}
+				</li>
+			</c:forEach>
+			<!-- Page번호 끝 -->
            </ul>
         </div>
        </aside>

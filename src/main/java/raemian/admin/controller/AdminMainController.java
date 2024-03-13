@@ -59,7 +59,7 @@ public class AdminMainController {
 		}
 		
 		model.addAttribute("admins", admins);
-		model.addAttribute("list", new Paging(total, currentPage, 5, 5, admins, null));
+		model.addAttribute("list", new Paging(total, currentPage, 5, 5, admins, null,null));
 		return "admin/view/config_main";
 	}
 	

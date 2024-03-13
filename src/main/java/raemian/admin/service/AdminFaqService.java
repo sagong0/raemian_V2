@@ -15,8 +15,15 @@ public class AdminFaqService {
 	
 	private final FaqRepository faqRepository;
 	
-	public List<Faq> findAll(){
-		return faqRepository.findAll();
+	public List<Faq> findByCurrentPage(int currentPage){
+		/**
+		 * 1 ->  0,5
+		 * 2 ->  5,5
+		 * 3 ->  10,5
+		 * n -> (n-1) * 5
+		 */
+		int pNo = (currentPage -1) * 5;
+		return faqRepository.findByCurrentPage(pNo);
 	}
 	
 	public int saveFaq(FaqForm faqForm){
@@ -25,5 +32,9 @@ public class AdminFaqService {
 	
 	public int deleteByFidx(int fidx) {
 		return faqRepository.deleteByFidx(fidx);
+	}
+	
+	public int countAll() {
+		return faqRepository.countAll();
 	}
 }

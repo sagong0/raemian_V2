@@ -18,19 +18,28 @@ import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.Faq;
 import raemian.admin.dto.FaqForm;
 import raemian.admin.service.AdminFaqService;
+import raemian.common.Paging;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/faq")
 public class AdminFaqController {
+	
 	Logger log = LoggerFactory.getLogger(AdminFaqController.class);
 	
 	private final AdminFaqService faqService;
 	
 	@GetMapping("/")
-	public String faq_home(Model model) {
-		List<Faq> faqs = faqService.findAll();
+	public String faq_home(@RequestParam(defaultValue = "1") int currentPage,
+			Model model) {
+		log.info("**************");
+		log.info("currentPage is {}", currentPage);
+		List<Faq> faqs = faqService.findByCurrentPage(currentPage);
+		int total = faqService.countAll();
+		log.info("total is = {}", total);
+		
 		model.addAttribute("faqs", faqs);
+		model.addAttribute("list", new Paging(total, currentPage, 5, 5, null, null, faqs));
 		return "admin/view/faq/faq_main";
 	}
 	
@@ -41,7 +50,8 @@ public class AdminFaqController {
 	
 	@PostMapping("/write")
 	public String faqWriteForm(@ModelAttribute FaqForm faqForm, 
-			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+			BindingResult bindingResult, 
+			RedirectAttributes redirectAttributes) {
 		if(bindingResult.hasErrors()) {
 			return "admin/view/faq/faq_write";
 		}
@@ -60,7 +70,6 @@ public class AdminFaqController {
 	
 	@PostMapping("/delete")
 	public String deleteFaq(@RequestParam int fidx, RedirectAttributes redirectAttributes) {
-		log.info("**************");
 		int result = faqService.deleteByFidx(fidx);
 		if(result < 0) {
 			redirectAttributes.addFlashAttribute("failMsg", "삭제에 실패하였습니다.");

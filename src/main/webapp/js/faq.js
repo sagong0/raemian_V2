@@ -48,3 +48,10 @@ function del_faq(fidx){
 		form.submit();
 	}
 }
+
+
+function faqPagination(pNo){
+	location.href="./?currentPage="+pNo;
+}
+
+

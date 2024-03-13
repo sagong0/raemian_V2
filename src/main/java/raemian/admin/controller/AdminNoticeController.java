@@ -59,7 +59,7 @@ public class AdminNoticeController {
 		
 		total = noticeService.count_notices(searchWord);
 		model.addAttribute("notices", notices);
-		model.addAttribute("list", new Paging(total,currentPage,3,5,null,notices));
+		model.addAttribute("list", new Paging(total,currentPage,3,5,null,notices,null));
 		return "admin/view/notice_main";
 	}
 	

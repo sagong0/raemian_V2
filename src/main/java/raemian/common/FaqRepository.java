@@ -6,9 +6,11 @@ import raemian.admin.domain.Faq;
 import raemian.admin.dto.FaqForm;
 
 public interface FaqRepository {
-	List<Faq> findAll();
+	List<Faq> findByCurrentPage(int currentPage);
 	
 	int saveFaq(FaqForm faqForm);
 	
 	int deleteByFidx(int fidx);
+	
+	int countAll();
 }
