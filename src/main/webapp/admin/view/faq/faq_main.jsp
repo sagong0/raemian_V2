@@ -53,13 +53,13 @@
         <li>관리자</li>
         <li>2023-10-06</li>
         <li>
-        <input type="button" value="삭제" class="delbtn">
+        <input type="button" value="삭제" onclick="del_faq(${faq.fidx});" class="delbtn">
         </li>
        </ul>
       <!-- display:none 또는 display:flex 로 해야합니다. -->
        <ol style="display:none;" >
         <li>A</li>
-        <li style="text-align: left;justify-content: flex-start;">${faq.fanswer}</li>
+        <li style="text-align: left; justify-content: flex-start;">${faq.fanswer}</li>
        </ol>
        </c:forEach>
      </span>
@@ -72,7 +72,9 @@
        </ul>
        </c:if>
        <span class="notice_btns">
-       <input type="button" onclick="add_faq();" value="FAQ 등록" class="meno_btn2"></span>
+       <input type="button" onclick="add_faq();" value="FAQ 등록" class="meno_btn2">
+       </span>
+       
        <aside>
         <div class="page_number">
            <ul>
@@ -87,6 +89,15 @@
 </main>
 <!-- FAQ 리스트 끝 -->
 <%@include file="../fragments/footer.jsp" %>
-<script src="../js/faq_main.js?v=<%=System.currentTimeMillis()%>"></script>
+
+<c:if test="${not empty successMsg}">
+<script>alert("${successMsg}");</script>
+</c:if>
+
+<c:if test="${not empty failMsg}">
+<script>alert("${failMsg}");</script>
+</c:if>
+
+<script src="../js/faq.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>

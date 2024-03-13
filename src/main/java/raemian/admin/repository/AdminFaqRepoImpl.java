@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.Faq;
+import raemian.admin.dto.FaqForm;
 import raemian.admin.mapper.AdminFaqMapper;
 import raemian.common.FaqRepository;
 
@@ -21,4 +22,13 @@ public class AdminFaqRepoImpl implements FaqRepository{
 		return faqMapper.findAll();
 	}
 
+	@Override
+	public int saveFaq(FaqForm faqForm) {
+		return faqMapper.saveFaq(faqForm);
+	}
+
+	@Override
+	public int deleteByFidx(int fidx) {
+		return faqMapper.deleteByFidx(fidx);
+	}
 }

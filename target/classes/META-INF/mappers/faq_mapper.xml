@@ -2,7 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="raemian.admin.mapper.AdminFaqMapper">
+	
 	<select id="findAll" resultType="raemian.admin.domain.Faq">
-	SELECT * from faq;
+	SELECT * from faq
+	order by fidx desc
 	</select>
+	
+	<insert id="saveFaq" parameterType="raemian.admin.dto.FaqForm">
+	INSERT INTO faq
+	VALUES('0',#{fquestion},#{fwriter},#{fanswer},now())
+	</insert>
+	
+	<delete id="deleteByFidx">
+	DELETE FROM faq
+	WHERE fidx=#{fidx}
+	</delete>
+	
 </mapper>

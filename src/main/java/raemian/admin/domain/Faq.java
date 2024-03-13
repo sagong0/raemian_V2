@@ -8,7 +8,7 @@ import lombok.ToString;
 
 @Getter @Setter @ToString
 public class Faq {
-	private int idx;
+	private int fidx;
 	private String fquestion, fanswer, fwriter;
 	private LocalDate findate;
 }

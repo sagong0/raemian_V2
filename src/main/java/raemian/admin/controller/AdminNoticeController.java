@@ -107,7 +107,6 @@ public class AdminNoticeController {
 	
 	/**
 	 * 첨부파일 다운로드
-	 * @throws MalformedURLException 
 	 */
 	@GetMapping("/attach/{nidx}")
 	public ResponseEntity<Resource> downloadAttach(@PathVariable int nidx) throws MalformedURLException {
