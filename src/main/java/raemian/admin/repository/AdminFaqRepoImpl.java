@@ -1,6 +1,7 @@
 package raemian.admin.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -35,5 +36,15 @@ public class AdminFaqRepoImpl implements FaqRepository{
 	@Override
 	public int countAll() {
 		return faqMapper.countAll();
+	}
+
+	@Override
+	public List<Faq> findByCurrentPageAndSearchVal(Map<String,Object> maps) {
+		return faqMapper.findByCurrentPageAndSearchVal(maps);
+	}
+
+	@Override
+	public List<Faq> findBySearchVal(String searchVal) {
+		return faqMapper.findBySearchVal(searchVal);
 	}
 }

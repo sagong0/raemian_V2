@@ -1,7 +1,10 @@
 package raemian.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -12,6 +15,7 @@ import raemian.common.FaqRepository;
 @Service
 @RequiredArgsConstructor
 public class AdminFaqService {
+	Logger log = LoggerFactory.getLogger(AdminFaqService.class);
 	
 	private final FaqRepository faqRepository;
 	
@@ -34,7 +38,20 @@ public class AdminFaqService {
 		return faqRepository.deleteByFidx(fidx);
 	}
 	
-	public int countAll() {
-		return faqRepository.countAll();
+	public int countAll(String searchVal) {
+		if(searchVal == null || searchVal.isEmpty()) {
+			return faqRepository.countAll();
+		}
+		
+		return faqRepository.findBySearchVal(searchVal).size();
+	}
+	
+	public List<Faq> findByCurrentPageAndSearchVal(int currentPage,String searchVal){
+		HashMap<String, Object> maps = new HashMap<>();
+		
+		int pNo = (currentPage -1) * 5;
+		maps.put("pNo", pNo);
+		maps.put("searchVal", searchVal);
+		return faqRepository.findByCurrentPageAndSearchVal(maps);
 	}
 }

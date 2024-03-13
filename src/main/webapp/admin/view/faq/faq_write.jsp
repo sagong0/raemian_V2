@@ -55,6 +55,6 @@ AdminMember loginedMember = (AdminMember) session.getAttribute("loginMember");
 <script>alert("${failMsg}");</script>
 </c:if>
 
-<script src="../js/faq.js?v=<%=System.currentTimeMillis()%>"></script>
+<script src="../js/faq_write.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>

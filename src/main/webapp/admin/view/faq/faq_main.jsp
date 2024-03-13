@@ -27,8 +27,8 @@
         <ol>
         <li>FAQ내용 검색</li>
         <li>
-        <input type="text" class="search_input">
-        <input type="button" value="검색" class="datebtn">
+        <input type="text"id="fsearch" name="fsearch" class="search_input">
+        <input type="button" id="searchBtn" value="검색" class="datebtn">
         </li>        
         <li></li>
         <li></li> 
@@ -50,8 +50,8 @@
        <ul>
         <li>Q</li>
         <li style="text-align: left; justify-content: flex-start;">${faq.fquestion}</li>
-        <li>관리자</li>
-        <li>2023-10-06</li>
+        <li>${faq.fwriter}</li>
+        <li>${faq.findate}</li>
         <li>
         <input type="button" value="삭제" onclick="del_faq(${faq.fidx});" class="delbtn">
         </li>
@@ -78,10 +78,11 @@
        <aside>
         <div class="page_number">
            <ul>
+           <c:set var="searchVal" value="${param.searchVal}" />
            <!-- Page번호 시작 -->
 			<c:forEach var="pNo" begin="${list.startPage}" end="${list.endPage}" step="1">
 				<li style="color:white;"
-				onclick="faqPagination(${pNo});"
+				onclick="faqPagination(${pNo},'${not empty searchVal ? searchVal : ''}');"
 				class="<c:if test='${param.currentPage eq pNo}'>active</c:if>">
 				${pNo}
 				</li>

@@ -31,12 +31,18 @@ public class AdminFaqController {
 	
 	@GetMapping("/")
 	public String faq_home(@RequestParam(defaultValue = "1") int currentPage,
+			@RequestParam(required = false) String searchVal,
 			Model model) {
-		log.info("**************");
-		log.info("currentPage is {}", currentPage);
-		List<Faq> faqs = faqService.findByCurrentPage(currentPage);
-		int total = faqService.countAll();
-		log.info("total is = {}", total);
+		List<Faq> faqs = null;
+		int total = 0;
+		
+		// 검색어 없을때
+		if(searchVal == null || searchVal.isEmpty()) {
+			faqs = faqService.findByCurrentPage(currentPage);
+		} else {
+			faqs = faqService.findByCurrentPageAndSearchVal(currentPage, searchVal);
+		}
+		total = faqService.countAll(searchVal);
 		
 		model.addAttribute("faqs", faqs);
 		model.addAttribute("list", new Paging(total, currentPage, 5, 5, null, null, faqs));

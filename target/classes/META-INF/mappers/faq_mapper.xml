@@ -10,9 +10,23 @@
 	limit #{pNo},5
 	</select>
 	
+	
+	<select id="findByCurrentPageAndSearchVal" parameterType="Map" resultType="raemian.admin.domain.Faq">
+	SELECT * from faq
+	WHERE
+	fquestion like concat('%',#{searchVal},'%')
+	order by fidx desc
+	LIMIT #{pNo},5
+	</select>
+	
+	<select id="findBySearchVal" resultType="raemian.admin.domain.Faq">
+	SELECT * FROM faq
+	WHERE fquestion like concat('%',#{searchVal},'%')
+	order by fidx desc
+	</select>
+	
 	<select id="countAll" resultType="int">
-	SELECT count(*)
-	FROM faq
+	SELECT count(*) FROM faq
 	</select>
 	
 	<insert id="saveFaq" parameterType="raemian.admin.dto.FaqForm">
