@@ -50,5 +50,3 @@ function notice_detail(nidx){
 }
 
 
-
-

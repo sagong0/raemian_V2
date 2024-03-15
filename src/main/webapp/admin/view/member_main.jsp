@@ -27,18 +27,18 @@
         <ol >
         <li>회원 검색</li>
         <li>
-        <select class="search_select">
-        <option>아이디</option>    
-        <option>이름</option>    
-        <option>연락처</option>    
+        <select id="searchType" name="searchType" class="search_select">
+	        <option value="아이디">아이디</option>   
+	        <option value="이름">이름</option>
+	        <option value="연락처">연락처</option>
         </select>
-        <input type="text" id="sdate2" class="search_input">
-        <input type="button" value="검색" class="datebtn">
+        <input type="text" id="searchVal" class="search_input">
+        <input type="button" id="searchBtn" value="검색" class="datebtn">
         </li>        
         <li></li>
         <li></li> 
         </ol>
-       </section> 
+       </section>
        <section class="member_listsview">
        <ul>
         <li>번호</li>
@@ -54,30 +54,45 @@
         <li>삭제</li>
        </ul>
        
-       <c:forEach var="admin" items="${admins}" varStatus="">
+       <c:if test="${not empty members}">
+       <c:forEach var="member" items="${members}" varStatus="loop">
        <ul>
-        <li>1</li>
-        <li>hong</li>
-        <li>홍길동</li>
-        <li>01012345678</li>
-        <li>hong@nxate.com</li>
-        <li style="justify-content: flex-start;">(05611) 서울시 종로구 종로3가 국일빌딩 5층</li>
-        <li>Y</li>   
-        <li>N</li>  
-        <li>Y</li>   
-        <li>N</li>   
+        <li>${loop.index+1}</li>
+        <li>${member.mid }</li>
+        <li>${member.mname}</li>
+        <li>${member.mtel }</li>
+        <li>${member.memail}</li>
+        <li style="justify-content: flex-start;">${member.mstreetaddr}</li>
+        <li>${member.ckemail}</li>   
+        <li>${member.cktel}</li>  
+        <li>${member.ckaddr}</li>   
+        <li>${member.cksms }</li>   
         <li>
-            <input type="button" value="삭제" class="delbtn">
+            <input type="button" onclick="del_member(${member.midx})" value="삭제" class="delbtn">
         </li>
        </ul>
        </c:forEach>
+       </c:if>
+       
+       <c:if test="${empty members}">
        <ul class="nodatas">
         <li>등록된 회원이 없습니다.</li>
        </ul>
+       </c:if>
+       
+       
        <aside>
         <div class="page_number">
            <ul>
-           <li>1</li>      
+           <c:set var="aarea" value="${param.aarea}" />
+           <!-- Page번호 시작 -->
+			<c:forEach var="pNo" begin="${list.startPage}" end="${list.endPage}" step="1">
+				<li style="color:white;"onclick="memberPagination(${pNo},'${not empty searchDto ? searchDto.searchType : ''}','${not empty searchDto ? searchDto.searchVal : ''}');" 
+				<c:if test='${param.currentPage eq pNo }'>active</c:if>>
+				${pNo}
+				</li>
+			</c:forEach>
+			<!-- Page번호 끝 -->      
            </ul>
         </div>
        </aside>
@@ -88,5 +103,10 @@
 </main>
 <!-- 회원관리 끝 -->
 <%@include file="./fragments/footer.jsp"%>
+<c:if test="${not empty msg}">
+<script>alert("${msg}");</script>
+</c:if>
+
+<script src="../js/member_main.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>

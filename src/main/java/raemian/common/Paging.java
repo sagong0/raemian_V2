@@ -8,6 +8,7 @@ import lombok.ToString;
 import raemian.admin.domain.AdminMember;
 import raemian.admin.domain.Faq;
 import raemian.admin.domain.Notice;
+import raemian.client.domain.Member;
 
 @Getter @ToString
 public class Paging {
@@ -34,15 +35,19 @@ public class Paging {
 	// Faq list
 	private List<Faq> faqs;
 	
+	// Client Member
+	private List<Member> members;
+	
 	
 	// size 추가 : 한 화면에 보여질 행의 수.
-	public Paging(int total, int currentPage, int size,int pagingCount, List<AdminMember> admins, List<Notice> notices,List<Faq> faqs) {
+	public Paging(int total, int currentPage, int size,int pagingCount, List<AdminMember> admins, List<Notice> notices,List<Faq> faqs, List<Member> members) {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.pagingCount = pagingCount;
 		this.admins = admins;
 		this.notices = notices;
 		this.faqs = faqs;
+		this.members = members;
 		
 		
 		if(total == 0) { // select 결과가 없다면...

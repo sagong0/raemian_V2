@@ -2,7 +2,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="raemian.common.mapper.ClientMemberMapper">
-	<select id="findAll" resultType="raemian.client.domain.Member">
+	
+	<select id="findAllByCurrentPage" resultType="raemian.client.domain.Member">
 	SELECT * FROM join_member
+	LIMIT #{pNO},3
 	</select>
+	
+	<select id="findBySearchDtoAndCurrentPage" parameterType="Map" resultType="raemian.client.domain.Member">
+	SELECT * FROM join_member
+	<where>
+        <choose>
+            <when test="searchDto.searchType == '아이디'">
+                AND mid like concat ('%',#{searchDto.searchVal},'%')
+            </when>
+            <when test="searchDto.searchType == '이름'">
+                AND mname like concat ('%',#{searchDto.searchVal},'%')
+            </when>
+            <when test="searchDto.searchType == '연락처'">
+                AND mtel like concat ('%',#{searchDto.searchVal},'%')
+            </when>
+            <!-- 다른 검색 조건에 따른 경우 추가 -->
+            <otherwise>
+                <!-- 기본 검색 조건 -->
+            </otherwise>
+        </choose>
+    </where>
+    LIMIT #{pNo},3
+	</select>
+	
+	<select id="countAll" resultType="int">
+	SELECT count(*) from join_member
+	</select>
+	
+	<select id="countBySearchDto" parameterType="raemian.common.dto.SearchDto" resultType="int">
+	SELECT count(*) FROM join_member
+	<where>
+        <choose>
+            <when test="searchType == '아이디'">
+                AND mid like concat ('%',#{searchVal},'%')
+            </when>
+            <when test="searchType == '이름'">
+                AND mname like concat ('%',#{searchVal},'%')
+            </when>
+            <when test="searchType == '연락처'">
+                AND mtel like concat ('%',#{searchVal},'%')
+            </when>
+            <!-- 다른 검색 조건에 따른 경우 추가 -->
+            <otherwise>
+                <!-- 기본 검색 조건 -->
+            </otherwise>
+        </choose>
+    </where>
+	</select>
+	
+	<delete id="deleteByIdx">
+	DELETE from join_member
+	WHERE midx=#{midx}
+	</delete>
+	
 </mapper>

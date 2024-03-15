@@ -45,7 +45,7 @@ public class AdminFaqController {
 		total = faqService.countAll(searchVal);
 		
 		model.addAttribute("faqs", faqs);
-		model.addAttribute("list", new Paging(total, currentPage, 5, 5, null, null, faqs));
+		model.addAttribute("list", new Paging(total, currentPage, 5, 5, null, null, faqs,null));
 		return "admin/view/faq/faq_main";
 	}
 	
