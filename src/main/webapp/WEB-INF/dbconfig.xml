@@ -32,6 +32,7 @@
 		      <value>classpath:/META-INF/mappers/admin_mapper.xml</value>
 		      <value>classpath:/META-INF/mappers/notice_mapper.xml</value>
 		      <value>classpath:/META-INF/mappers/faq_mapper.xml</value>
+		      <value>classpath:/META-INF/mappers/config_mapper.xml</value>
 		      <value>classpath:/META-INF/mappers/client/member_mapper.xml</value>
 		    </list>
 	  </property>

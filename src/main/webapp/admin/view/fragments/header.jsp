@@ -4,7 +4,7 @@
 <div class="menusize">
     <ul id="menus">
         <li class="topmenu1">ADMINISTRATOR</li>
-        <li class="topmenu2">환경설정</li>
+        <li class="topmenu2"><a href="../config/">세대정보</a></li>
         <li class="topmenu2"><a href="../member/">회원관리</a></li>
         <li class="topmenu2"><a href="../notice/">공지사항 관리</a></li>
         <li class="topmenu2"><a href="../faq/">FAQ</a></li>

@@ -29,10 +29,8 @@ function memberPagination(pNo, searchType, searchVal){
 	location.href="./?currentPage="+pNo+"&searchType="+searchType+"&searchVal="+searchVal;
 }
 
-/**
- * 삭제 PART
- */
- function del_member(midx){
+/** 삭제 PART **/
+function del_member(midx){
 	console.log(midx);
 	var form = document.createElement("form");
 	var input = document.createElement("input");
@@ -45,7 +43,7 @@ function memberPagination(pNo, searchType, searchVal){
 	
 	form.method="POST";
 	form.action="./delete";
-	if(confirm("해당 계정을 삭제하시겠습니까?")){		
+	if(confirm("해당 계정을 삭제하시겠습니까?")){
 		form.submit();
 	}
  }
