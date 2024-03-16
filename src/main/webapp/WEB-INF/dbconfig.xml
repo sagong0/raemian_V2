@@ -52,6 +52,7 @@
 			<mvc:mapping path="/**"/> 
 			<!-- 제외할 URL 패턴 -->
         	<mvc:exclude-mapping path="/admin/**"/>
+        	<mvc:exclude-mapping path="/client/**"/>
         	<mvc:exclude-mapping path="/*.ico"/>
         	<mvc:exclude-mapping path="/img/**"/>
         	<mvc:exclude-mapping path="/css/**"/>
