@@ -2,7 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="raemian.common.mapper.ConfigMapper">
+	
 	<select id="findAll" resultType="raemian.admin.domain.ConfigInfo">
 	SELECT * FROM admin_config;
 	</select>
+	
+	<insert id="insert_config" parameterType="raemian.admin.dto.ConfigInfoForm">
+	INSERT INTO admin_config
+	VALUES('0',#{atype}, #{awriter},#{aprivate},#{apublic},#{aetcpublic},#{acontractSize},#{aimgUrl},#{ause},#{aorder},now());
+	</insert>
+	
 </mapper>

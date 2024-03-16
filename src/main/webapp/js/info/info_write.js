@@ -22,7 +22,14 @@ function addInfo(){
 	} else if(infoForm.ause.value==""){
 		alert("사용유무를 입력해주세요.");
 		infoForm.ause.focus();
-	} else if(infoForm.aorder.value==""){
+	}
+	/** 
+	else if(infoForm.ause.value!="Y" || infoForm.ause.value!="N"){
+		alert("사용유무를 확인해주세요.");
+		infoForm.ause.focus();
+	} 
+	 */
+	else if(infoForm.aorder.value=="" || !isNaN(infoForm.aorder)){
 		alert("출력순서를 입력해주세요.");
 		infoForm.aorder.focus();
 	} else {

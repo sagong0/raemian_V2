@@ -45,7 +45,7 @@
         <li>삭제</li>
        </ul>
        
-       <c:if test="${not empty configs}">>
+       <c:if test="${not empty configs}">
        <c:forEach var="config" items="${configs}" varStatus="loop">
        <ul style="height:140px;">
 	   		<li>${loop.index + 1}</li>

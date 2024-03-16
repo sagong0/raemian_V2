@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.ConfigInfo;
+import raemian.admin.dto.ConfigInfoForm;
 import raemian.common.repository.ConfigInfoRepository;
 
 @Service
@@ -15,5 +16,9 @@ public class ConfigInfoService {
 	
 	public List<ConfigInfo> findAll(){
 		return configRepository.findAll();
+	}
+	
+	public int insert_config(ConfigInfoForm configInfoForm) {
+		return configRepository.insert_config(configInfoForm);
 	}
 }

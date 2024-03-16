@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.ConfigInfo;
+import raemian.admin.dto.ConfigInfoForm;
 import raemian.common.mapper.ConfigMapper;
 
 
@@ -18,5 +19,10 @@ public class ConfigInfoRepoImpl implements ConfigInfoRepository{
 	@Override
 	public List<ConfigInfo> findAll() {
 		return configMapper.findAll();
+	}
+
+	@Override
+	public int insert_config(ConfigInfoForm configInfoForm) {
+		return configMapper.insert_config(configInfoForm);
 	}
 }

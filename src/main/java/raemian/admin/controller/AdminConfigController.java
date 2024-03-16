@@ -42,12 +42,18 @@ public class AdminConfigController {
 	@PostMapping("/write")
 	public String newInfoForm(@Valid @ModelAttribute ConfigInfoForm infoForm, BindingResult bindingResult,Model model) {
 		
+		if(!infoForm.getAuse().equals("O") && !infoForm.getAuse().equals("X")) {
+			bindingResult.rejectValue(infoForm.getAuse(), "abc", "사용여부를 확인 해주세요.");
+		}
+		
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("errors", bindingResult);
 			return "admin/view/config/info_write";
 		}
 		// 성공 로직
 		log.info("성공 로직 실시 ");
-		return "";
+		int sign = configInfoService.insert_config(infoForm);
+		log.info("sign = {}", sign);
+		return "redirect:/config/";
 	}
 }

@@ -48,7 +48,7 @@
        <li>이미지 URL</li>
        <li><input type="text" name="aimgUrl" class="notice_in in1">&nbsp;&nbsp;&nbsp;예시) http://abc.co.kr/123.jpg</li> 
        <li>사용 유/무</li>
-       <li><input type="radio" name="ause" class="radio_txt" checked>사용함 <input type="radio" class="radio_txt">사용안함</li>
+       <li><input type="radio" name="ause" class="radio_txt" value="O" checked>사용함 <input type="radio" name="ause" value="X" class="radio_txt">사용안함</li>
        <li>출력순서</li>
        <li><input type="text" name="aorder" class="notice_in in2">&nbsp;&nbsp;&nbsp;※ 숫자만 입력하세요 단, 동일한 이름일 경우 데이터 등록된 순으로 출력 됩니다.</li>
        </ol>
