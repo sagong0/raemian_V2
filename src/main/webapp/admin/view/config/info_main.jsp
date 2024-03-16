@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,33 +45,41 @@
         <li>삭제</li>
        </ul>
        
+       <c:if test="${not empty configs}">>
+       <c:forEach var="config" items="${configs}" varStatus="loop">
        <ul style="height:140px;">
-   <li>1</li>
-   <li style="text-align: left; justify-content: flex-start;">
-        <div class="info_img">
-        <img src="#">   
-        </div>
-        <div class="info_text">
-        <span>주거타입 : 내용</span>
-        <span>주거전용 : 내용</span>
-        <span>주거공용 : 내용</span>
-        <span>기타공용 : 내용</span>
-        <span>계약면적 : 내용</span>
-        </div>
-        </li>
-        <li>O</li>
-        <li>1</li>
-        <li>관리자</li>
-        <li>2023-10-06</li>
-        <li>
-            <input type="button" value="삭제" class="delbtn">
-        </li>
-       </ul>
+	   		<li>${loop.index + 1}</li>
+		  	<li style="text-align: left; justify-content: flex-start;">
+	        <div class="info_img">
+	        <img src="${config.aimgUrl}">
+	        </div>
+	        <div class="info_text">
+		        <span>주거타입 : ${config.atype}</span>
+		        <span>주거전용 : ${config.aprivate}</span>
+		        <span>주거공용 : ${config.apublic}</span>
+		        <span>기타공용 : ${config.aetcpublic}</span>
+		        <span>계약면적 : ${config.acontractSize}</span>
+	        </div>
+	        </li>
+	        <li>${config.ause}</li>
+	        <li>${config.aorder}</li>
+	        <li>${config.awriter}</li>
+	        <li>${config.aindate}</li>
+	        <li>
+	            <input type="button" value="삭제" class="delbtn">
+	        </li>
+	       </ul>
+       </c:forEach>
+       </c:if>
+       
+       <c:if test="${empty configs}">
        <ul class="nodatas">
         <li>등록된 세대타입 내용이 없습니다.</li>
        </ul>
+       </c:if>
+       
        <span class="notice_btns">
-       <input type="button" value="세대타입 생성" class="meno_btn2"></span>
+       <input type="button" id="createBtn" value="세대타입 생성" class="meno_btn2"></span>
        <aside>
         <div class="page_number">
            <ul>
@@ -85,5 +94,6 @@
 </main>
 <!-- 공지사항 관리 끝 -->
 <%@ include file="../fragments/footer.jsp"%>
+<script src="../js/info/info_main.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>
