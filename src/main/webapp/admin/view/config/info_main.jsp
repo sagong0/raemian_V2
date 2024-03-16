@@ -27,8 +27,8 @@
         <ol>
         <li>세대정보 검색</li>
         <li>
-        <input type="text" id="sdate2" class="search_input">
-        <input type="button" value="검색" class="datebtn">
+        <input type="text" id="searchinput" class="search_input">
+        <input type="button" id="searchBtn" value="검색" class="datebtn">
         </li>        
         <li></li>
         <li></li> 
@@ -66,7 +66,7 @@
 	        <li>${config.awriter}</li>
 	        <li>${config.aindate}</li>
 	        <li>
-	            <input type="button" value="삭제" class="delbtn">
+	            <input type="button" onclick="del_config(${config.aidx});" value="삭제" class="delbtn">
 	        </li>
 	       </ul>
        </c:forEach>
@@ -83,7 +83,7 @@
        <aside>
         <div class="page_number">
            <ul>
-           <li>1</li>      
+           <li>1</li>
            </ul>
         </div>
        </aside>
@@ -94,6 +94,9 @@
 </main>
 <!-- 공지사항 관리 끝 -->
 <%@ include file="../fragments/footer.jsp"%>
+<c:if test="${not empty msg}">
+<script> alert("${msg}"); </script>
+</c:if>
 <script src="../js/info/info_main.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>

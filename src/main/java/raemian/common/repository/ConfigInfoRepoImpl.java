@@ -25,4 +25,14 @@ public class ConfigInfoRepoImpl implements ConfigInfoRepository{
 	public int insert_config(ConfigInfoForm configInfoForm) {
 		return configMapper.insert_config(configInfoForm);
 	}
+
+	@Override
+	public int delete_config(int aidx) {
+		return configMapper.delete_config(aidx);
+	}
+
+	@Override
+	public List<ConfigInfo> findByPrivate(String searchWord) {
+		return configMapper.findByPrivate(searchWord);
+	}
 }

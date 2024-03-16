@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +29,16 @@ public class AdminConfigController {
 	private final ConfigInfoService configInfoService;
 	
 	@GetMapping("/")
-	public String info_home(Model model) {
-		List<ConfigInfo> configs = configInfoService.findAll();
+	public String info_home(@RequestParam(required = false) String searchWord,Model model) {
+		List<ConfigInfo> configs = null;
 		
+		if(searchWord == null || searchWord.trim().isEmpty()) {
+			configs= configInfoService.findAll();
+		} else{
+			configs = configInfoService.findBySearch(searchWord);
+		}
+		
+		log.info("configs = {}", configs);
 		model.addAttribute("configs", configs);
 		return "admin/view/config/info_main";
 	}
@@ -51,9 +60,25 @@ public class AdminConfigController {
 			return "admin/view/config/info_write";
 		}
 		// 성공 로직
-		log.info("성공 로직 실시 ");
 		int sign = configInfoService.insert_config(infoForm);
-		log.info("sign = {}", sign);
+		if(sign <= 0) {
+			return "admin/view/config/info_write";
+		}
+		return "redirect:/config/";
+	}
+	
+	@PostMapping("/delete")
+	public String delete_config(@RequestParam int aidx, RedirectAttributes redirectAttributes) {
+		log.info("aidx = {}", aidx);
+		int result = configInfoService.delete_config(aidx);
+		if(result <= 0) {
+			redirectAttributes.addFlashAttribute("msg", "삭제에 실패하였습니다.");
+			return "admin/view/config/info_main";
+		}
+		redirectAttributes.addFlashAttribute("msg", "성공적으로 삭제 되었습니다.");
 		return "redirect:/config/";
 	}
 }
+
+
+

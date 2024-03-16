@@ -4,12 +4,22 @@
 <mapper namespace="raemian.common.mapper.ConfigMapper">
 	
 	<select id="findAll" resultType="raemian.admin.domain.ConfigInfo">
-	SELECT * FROM admin_config;
+	SELECT * FROM admin_config
+	</select>
+	
+	<select id="findByPrivate" resultType="raemian.admin.domain.ConfigInfo">
+	SELECT * FROM admin_config
+	WHERE aprivate like concat ('%',#{aprivate},'%')
 	</select>
 	
 	<insert id="insert_config" parameterType="raemian.admin.dto.ConfigInfoForm">
 	INSERT INTO admin_config
 	VALUES('0',#{atype}, #{awriter},#{aprivate},#{apublic},#{aetcpublic},#{acontractSize},#{aimgUrl},#{ause},#{aorder},now());
 	</insert>
+	
+	<delete id="delete_config">
+	DELETE FROM admin_config
+	WHERE aidx=#{aidx} 
+	</delete>
 	
 </mapper>

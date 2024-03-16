@@ -21,4 +21,12 @@ public class ConfigInfoService {
 	public int insert_config(ConfigInfoForm configInfoForm) {
 		return configRepository.insert_config(configInfoForm);
 	}
+	
+	public int delete_config(int aidx) {
+		return configRepository.delete_config(aidx);
+	}
+	
+	public List<ConfigInfo> findBySearch(String searchWord) {
+		return configRepository.findByPrivate(searchWord);
+	}
 }
