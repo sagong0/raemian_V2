@@ -28,4 +28,15 @@ public class ClientHomeController {
 		return "client/view/index";
 	}
 	
+	@GetMapping("/login")
+	public String loginPage() {
+		return "client/view/login/login";
+	}
+	
+	@GetMapping("/join")
+	public String joinPage() {
+		return "client/view/login/join_member";
+	}
+	
+	
 }

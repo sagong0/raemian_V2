@@ -4,8 +4,8 @@
 	<header id="hd">
 		<div class="top_menu">
 	        <ul class="top_menu_list">
-	        	<li><a href="#">로그인</a></li>
-		        <li><a href="#">회원가입</a></li>
+	        	<li><a href="./login">로그인</a></li>
+		        <li><a href="./join">회원가입</a></li>
 		        <li><a href="#">FAQ</a></li>
 		        <li><a href="#">공지사항</a></li>
 		    </ul>
