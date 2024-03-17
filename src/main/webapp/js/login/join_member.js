@@ -1,8 +1,10 @@
 /**
  * 아이디 중복확인 PART
  */
+var idDoubleCheck = false;
 var checkIdBtn = document.getElementById("checkIdBtn");
 var id_regex = /^[a-zA-Z0-9]+$/;
+
 checkIdBtn.addEventListener("click", function(){
 	var mid = document.getElementById("mid").value;
 	
@@ -27,6 +29,7 @@ checkIdBtn.addEventListener("click", function(){
 		  if(resp === "canuse"){
 			  alert("사용 가능한 아이디 입니다.");
 			  joinForm.mid.readOnly = "readOnly";
+			  idDoubleCheck = true;
 		  } else{
 			  alert("이미 사용 중인 아이디 입니다.");
 			  joinForm.mid.value = "";
@@ -107,7 +110,7 @@ checkSmsBtn.addEventListener("click", function(){
 
 /* 주소찾기 Btn */
 document.querySelector("#findAddrBtn").addEventListener("click",function(){
-	let form = document.querySelector("#jForm");
+	let form = document.getElementById("joinForm");
 	
 	new daum.Postcode({
         oncomplete: function(resp) {
@@ -128,6 +131,9 @@ function emailcheck(val){
 	if(val == "" || val.length <= 6){
 		emailBox.checked = false;
 		emailBox.disabled = "disabled";
+	} else if(!emailRegex.test(val)){
+		emailBox.checked = false;
+		emailBox.disabled = "disabled";
 	} else{
 		emailBox.disabled = false;
 	}
@@ -145,6 +151,8 @@ joinBtn.addEventListener("click", function(){
 	} else if(joinForm.mid.value == ""){
 		alert("사용하실 아이디를 입력해주세요.");
 		joinForm.mid.focus();
+	} else if(!idDoubleCheck){
+		alert("아이디 중복확인을 진행해주세요.");
 	} else if(joinForm.mpw.value == ""){
 		alert("사용하실 비밀번호를 입력해주세요.");
 		joinForm.mpw.focus();
