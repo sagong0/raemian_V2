@@ -72,12 +72,12 @@
         <li><em class="ck_font">■</em>휴대전화번호</li>
         <li>
         <input type="text" name="mtel" class="mbinput2" placeholder="숫자만 입력하세요">
-        <button type="button" id="randomBtn" class="mb_btn1">인증발송</button>
+        <button type="button" id="sendSmsBtn" class="mb_btn1">인증발송</button>
         </li>
         <li><em class="ck_font">■</em> 인증번호</li>
         <li>
         <input type="text" name="certification_num" class="mbinput2" placeholder="숫자 6자리를 입력하세요" maxlength="6">
-        <button type="button" class="mb_btn1">인증완료</button>
+        <button type="button" id="checkSms" class="mb_btn1">인증완료</button>
         </li>
         <li> 이메일</li>
         <li>

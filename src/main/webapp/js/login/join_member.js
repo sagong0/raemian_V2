@@ -1,14 +1,4 @@
 /**
- * 인증번호 발송
- 
-var randomBtn = document.getElementById("randomBtn");
-randomBtn.addEventListener("click",()=>{
-	let randomNum = Math.floor(Math.random()*900000);
-	console.log(randomNum);
-});
-*/
-
-/**
  * 아이디 중복확인 PART
  */
 var checkIdBtn = document.getElementById("checkIdBtn");
@@ -48,6 +38,70 @@ checkIdBtn.addEventListener("click", function(){
 		});		
 	}
 });
+
+
+
+/**
+ * SMS API 인증번호 발송 버튼 
+ */
+var smsBtn = document.getElementById("sendSmsBtn");
+var smsNo = Math.floor(Math.random()*900000);
+smsBtn.addEventListener("click", function(){
+	if(joinForm.mtel.value == "" || isNaN(joinForm.mtel.value)){
+		alert("전화번호를 확인해주세요.");
+		joinForm.mtel.focus();
+	} else if(joinForm.mtel.value.lenth < 10){
+		alert("올바른 전화번호 형식을 입력해주세요.");
+		joinForm.mtel.focus();
+	} else{
+		var url ="./smsVerification.do";
+		fetch(url, {
+			method: "POST",
+			headers: {
+	        	"Content-Type": "application/x-www-form-urlencoded"
+			},
+			body: "smsNo="+smsNo+"&mtel="+joinForm.mtel.value
+		})
+		.then((res)=>{
+			if(!res.ok){
+				throw new Error("네트워크 오류");
+			}
+			else{
+				return res.text();
+			}
+		})
+		.then((data)=>{
+			if(data.includes("ok")){
+				alert("인증번호가 발송되었습니다.");
+			} else{
+				alert("현재 어뷰징 이슈로 Naver SMS API 개인 계정의 경우 서비스 신규 이용을 제한되어 \n f12 를 눌러 콘솔창을 통해 인증번호를 확인해주세요.");
+				console.log(data.split("cancel")[1]);
+			}
+		})
+		.catch((e)=>{
+			console.log("ajax 오류 구문으로 빠짐.");
+			console.log(e);
+		});
+	}
+});
+
+/** 인증번호 일치 여부 */
+var checkSmsBtn = document.getElementById("checkSms");
+checkSmsBtn.addEventListener("click", function(){
+	if(joinForm.certification_num.value==""|| joinForm.certification_num.value.trim() == ""){
+		alert("인증번호를 입력해주세요.");
+		joinForm.certification_num.focus();
+	} else{
+		if(joinForm.certification_num.value == smsNo){
+			alert("성공적으로 인증되었습니다.");
+		} else{
+			alert("인증번호를 확인해주세요.");
+			joinForm.certification_num.focus();
+		}
+	}
+});
+
+
 	
 
 

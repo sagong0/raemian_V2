@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import raemian.client.domain.Member;
 import raemian.client.dto.JoinMemberForm;
 import raemian.common.service.ClientMemberService;
 import raemian.common.service.ConfigInfoService;
+import raemian.common.service.SmsApiService;
 
 @Slf4j
 @Controller
@@ -30,6 +32,7 @@ public class ClientHomeController {
 	
 	private final ConfigInfoService configInfoService;
 	private final ClientMemberService clientMemberService;
+	private final SmsApiService smsService;
 	
 	@GetMapping("/")
 	public String home(Model model) {
@@ -57,7 +60,7 @@ public class ClientHomeController {
 	
 	@ResponseBody
 	@PostMapping("/checkId")
-	public String postMethodName(@RequestBody String mid) {
+	public String idCheck(@RequestBody String mid) {
 		log.info("mid = {}", mid);
 		Optional<Member> optionalMember = clientMemberService.findByMid(mid);
 		if(optionalMember.isPresent()) {
@@ -65,6 +68,21 @@ public class ClientHomeController {
 		} 
 		return "canuse";
 	}
+	
+	@ResponseBody
+	@PostMapping("/smsVerification.do")
+	public String smsApiService(@RequestParam int smsNo, @RequestParam String mtel) {
+		String sign = "";
+		try {
+			sign = smsService.smsApiService(smsNo, mtel);
+			log.info("sign = {}", sign);
+		} catch (Exception e) {
+			log.info("fail!!!!!!!!");
+			e.printStackTrace();
+		}
+		return sign;
+	}
+	
 	
 	
 }
