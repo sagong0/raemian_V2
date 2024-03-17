@@ -1,15 +1,25 @@
 package raemian.client.controller;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import raemian.admin.domain.ConfigInfo;
+import raemian.client.domain.Member;
+import raemian.client.dto.JoinMemberForm;
+import raemian.common.service.ClientMemberService;
 import raemian.common.service.ConfigInfoService;
 
 @Slf4j
@@ -19,6 +29,7 @@ import raemian.common.service.ConfigInfoService;
 public class ClientHomeController {
 	
 	private final ConfigInfoService configInfoService;
+	private final ClientMemberService clientMemberService;
 	
 	@GetMapping("/")
 	public String home(Model model) {
@@ -34,8 +45,25 @@ public class ClientHomeController {
 	}
 	
 	@GetMapping("/join")
-	public String joinPage() {
+	public String joinFormCreate() {
 		return "client/view/login/join_member";
+	}
+	
+	@PostMapping("/join")
+	public String joinForm(@Valid @ModelAttribute JoinMemberForm joinMemberForm) {
+		log.info("joinForm = {}", joinMemberForm);
+		return "client/view/login/join_member";
+	}
+	
+	@ResponseBody
+	@PostMapping("/checkId")
+	public String postMethodName(@RequestBody String mid) {
+		log.info("mid = {}", mid);
+		Optional<Member> optionalMember = clientMemberService.findByMid(mid);
+		if(optionalMember.isPresent()) {
+			return "nouse";
+		} 
+		return "canuse";
 	}
 	
 	

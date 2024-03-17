@@ -60,4 +60,10 @@
 	WHERE midx=#{midx}
 	</delete>
 	
+	
+	<select id="findByMid" resultType="raemian.client.domain.Member">
+	SELECT * FROM join_member
+	WHERE mid = #{mid}
+	</select>
+	
 </mapper>

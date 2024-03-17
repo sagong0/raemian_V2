@@ -26,10 +26,13 @@ public class JoinMemberForm {
 	
 	@Pattern(regexp = "[YN]", message = "ckemail 은 Y or N 값 이어야 합니다.")
 	private String ckemail;
+	
 	@Pattern(regexp = "[YN]", message = "cktel 은 Y or N 값 이어야 합니다.")
 	private String cktel;
+	
 	@Pattern(regexp = "[YN]", message = "ckaddr 은 Y or N 값 이어야 합니다.")
 	private String ckaddr;
+	
 	@Pattern(regexp = "[YN]", message = "cksms 은 Y or N 값 이어야 합니다.")
 	private String cksms;
 }

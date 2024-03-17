@@ -14,6 +14,8 @@ public interface ClientMemberMapper {
 	
 	List<Member> findBySearchDtoAndCurrentPage(Map<String, Object> maps);
 	
+	Member findByMid(String mid);
+	
 	int countAll();
 	
 	int countBySearchDto(SearchDto searchDto);

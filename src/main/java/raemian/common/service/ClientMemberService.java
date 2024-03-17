@@ -3,6 +3,7 @@ package raemian.common.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -41,5 +42,14 @@ public class ClientMemberService {
 	
 	public int delete_member(int midx) {
 		return memberRepository.deleteByIdx(midx);
+	}
+	
+	
+	/**
+	 * ID 중복 체크 시 
+	 * 해당 입력 아이디로 Member 찾기
+	 */
+	public Optional<Member> findByMid(String mid) {
+		return memberRepository.findByMid(mid);
 	}
 }

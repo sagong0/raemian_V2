@@ -58,8 +58,8 @@
         <li><input type="text" name="mname" class="mbinput1" placeholder="이름을 입력하세요"></li>
         <li><em class="ck_font">■</em> 아이디</li>
         <li>
-        <input type="text" name="mid" class="mbinput2" placeholder="6~12자의 아이디를 입력하세요">
-        <button type="button" class="mb_btn1">중복확인</button>
+        <input type="text" id="mid" name="mid" class="mbinput2" placeholder="6~12자의 아이디를 입력하세요">
+        <button type="button" id="checkIdBtn" class="mb_btn1">중복확인</button>
         </li>
         <li><em class="ck_font">■</em> 비밀번호</li>
         <li>
@@ -87,7 +87,7 @@
         <li style="height: 125px;"><em class="ck_font">■</em> 주소</li>
         <li style="height: 120px; line-height: normal; margin-top: 5px;">
         <input type="text" name="mzipcode" class="mbinput1" placeholder="우편번호" maxlength="5" readonly>
-        <button type="button" class="mb_btn1">주소찾기</button>
+        <button type="button" id="findAddrBtn" class="mb_btn1">주소찾기</button>
         <input type="text" name="mstreetaddr" class="mbinput4" placeholder="도로명 주소" readonly>
         <input type="text" name="mdetailaddr" class="mbinput4" placeholder="상세주소를 입력하세요" readonly>
         </li>
@@ -114,6 +114,7 @@
 <%@ include file="../fragments/footer.jsp"%>	  	
  <!-- 카피라이터 종료 -->
  <script src="../js/login/join_member.js?v=<%=System.currentTimeMillis()%>"></script>
+ <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </div>
     </div>
 </body>

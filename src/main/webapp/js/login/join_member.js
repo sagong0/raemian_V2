@@ -9,6 +9,61 @@ randomBtn.addEventListener("click",()=>{
 */
 
 /**
+ * 아이디 중복확인 PART
+ */
+var checkIdBtn = document.getElementById("checkIdBtn");
+var id_regex = /^[a-zA-Z0-9]+$/;
+checkIdBtn.addEventListener("click", function(){
+	var mid = document.getElementById("mid").value;
+	
+	if(mid == ""){
+		alert("사용하실 아이디를 입력해주세요.");
+		mid.focus();
+	} else if(!id_regex.test(mid)){
+		alert("아이디는 영문과 숫자만 사용 가능합니다.");
+		mid.focus();
+	} else{
+		fetch('./checkId', {
+		  method: 'POST',
+		  body: mid,
+		})
+		.then(response => {
+		  if (!response.ok) {
+		    throw new Error('Network response was not ok');
+		  }
+		  return response.text();
+		})
+		.then(resp => {
+		  if(resp === "canuse"){
+			  alert("사용 가능한 아이디 입니다.");
+			  joinForm.mid.readOnly = "readOnly";
+		  } else{
+			  alert("이미 사용 중인 아이디 입니다.");
+			  joinForm.mid.value = "";
+			  joinForm.mid.focus();
+		  }
+		})
+		.catch(error => {
+		  console.error('Error:', error);
+		});		
+	}
+});
+	
+
+
+/* 주소찾기 Btn */
+document.querySelector("#findAddrBtn").addEventListener("click",function(){
+	let form = document.querySelector("#jForm");
+	
+	new daum.Postcode({
+        oncomplete: function(resp) {
+			form.mzipcode.value = resp.zonecode;
+			form.mstreetaddr.value = resp.address;
+        }
+    }).open();
+})
+
+/**
  * 이메일 미 입력시
  * 이메일 수신 체크박스 비활성화
  */
@@ -66,5 +121,3 @@ function join_submit(){
 	
 	joinForm.submit();
 }
-
-

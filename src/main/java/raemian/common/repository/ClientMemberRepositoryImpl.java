@@ -2,6 +2,7 @@ package raemian.common.repository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -40,6 +41,11 @@ public class ClientMemberRepositoryImpl implements ClientMemberRepository{
 	@Override
 	public int deleteByIdx(int midx) {
 		return memberMapper.deleteByIdx(midx);
+	}
+
+	@Override
+	public Optional<Member> findByMid(String mid) {
+		return Optional.ofNullable(memberMapper.findByMid(mid));
 	}
 
 	
