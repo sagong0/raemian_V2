@@ -19,6 +19,11 @@ public class AdminFaqService {
 	
 	private final FaqRepository faqRepository;
 	
+	public List<Faq> findAll(){
+		return faqRepository.findAll();
+	}
+	
+	
 	public List<Faq> findByCurrentPage(int currentPage){
 		/**
 		 * 1 ->  0,5

@@ -7,6 +7,8 @@ import raemian.admin.domain.Faq;
 import raemian.admin.dto.FaqForm;
 
 public interface FaqRepository {
+	List<Faq> findAll();
+	
 	List<Faq> findByCurrentPage(int currentPage);
 	
 	List<Faq> findBySearchVal(String searchVal);

@@ -6,8 +6,8 @@
 	        <ul class="top_menu_list">
 	        	<li><a href="/raemian/client/login">로그인</a></li>
 		        <li><a href="/raemian/client/agree">회원가입</a></li>
-		        <li><a href="#">FAQ</a></li>
-		        <li><a href="#">공지사항</a></li>
+		        <li><a href="/raemian/faqs/">FAQ</a></li>
+		        <li><a href="/raemian/notices/">공지사항</a></li>
 		    </ul>
     	</div>
         <div class="top">

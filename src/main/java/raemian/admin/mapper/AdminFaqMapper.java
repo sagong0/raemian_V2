@@ -10,6 +10,8 @@ public interface AdminFaqMapper {
 	
 	List<Faq> findByCurrentPage(int pNo);
 	
+	List<Faq> findAll();
+	
 	int saveFaq(FaqForm faqForm);
 	
 	int deleteByFidx(int fidx);

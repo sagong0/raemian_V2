@@ -47,4 +47,9 @@ public class AdminFaqRepoImpl implements FaqRepository{
 	public List<Faq> findBySearchVal(String searchVal) {
 		return faqMapper.findBySearchVal(searchVal);
 	}
+
+	@Override
+	public List<Faq> findAll() {
+		return faqMapper.findAll();
+	}
 }

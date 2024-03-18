@@ -70,12 +70,12 @@ public class ClientHomeController {
 	        model.addAttribute("errors", bindingResult.getAllErrors());
 			return "client/view/login/join_member";
 		}
-		// 성공로직 
-		log.info("joinForm = {}", joinMemberForm);
+		// 성공로직
 		int result = clientMemberService.insert_member(joinMemberForm);
-		log.info("********************");
-		log.info("result = {}", result);
-		log.info("********************");
+		if(result < 0) {
+			model.addAttribute("errors", bindingResult.getAllErrors());
+			return "client/view/login/join_member";
+		}
 		redirectAttributes.addFlashAttribute("msg", "성공적으로 회원가입 되셨습니다. 로그인 후 사용해주세요.");
 		return "redirect:/client/login/";
 	}
