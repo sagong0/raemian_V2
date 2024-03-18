@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import raemian.client.domain.Member;
+import raemian.client.dto.JoinMemberForm;
 import raemian.common.dto.SearchDto;
 
 @Mapper
@@ -21,4 +22,6 @@ public interface ClientMemberMapper {
 	int countBySearchDto(SearchDto searchDto);
 	
 	int deleteByIdx(int midx);
+	
+	int insert_member(JoinMemberForm joinMemberForm);
 }

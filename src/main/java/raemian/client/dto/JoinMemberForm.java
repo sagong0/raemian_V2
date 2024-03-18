@@ -4,6 +4,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+
+@Getter @Setter @ToString
 public class JoinMemberForm {
 	
 	@NotEmpty(message = "사용자 이름을 입력해주세요.")
@@ -15,14 +21,20 @@ public class JoinMemberForm {
 	@NotEmpty(message = "사용하실 비밀번호를 확인해주세요.")
 	private String mpw;
 
-	@Pattern(regexp = "^\\d{3}-\\d{3,4}-\\d{4}$", message = "올바른 전화번호 형식이 아닙니다.")
+	@Pattern(regexp = "^\\d{10,11}$", message = "올바른 전화번호 형식이 아닙니다.")
 	private String mtel;
 	
 	@Email(message = "올바른 이메일 형식을 사용해주세요.")
 	private String memail;
 	
-	@NotEmpty
-	private String mzipcode,mstreetaddr,mdetailaddr;
+	@NotEmpty(message = "주소를 확인해주세요.")
+	private String mzipcode;
+	
+	@NotEmpty(message = "주소를 확인해주세요.")
+	private String mstreetaddr;
+	
+	@NotEmpty(message = "주소를 확인해주세요.")
+	private String mdetailaddr;
 	
 	@Pattern(regexp = "[YN]", message = "ckemail 은 Y or N 값 이어야 합니다.")
 	private String ckemail;

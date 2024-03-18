@@ -3,5 +3,5 @@
  */
 var joinBtn = document.getElementById("joinBtn");
 joinBtn.addEventListener("click",()=>{
-	location.href="./join"
+	location.href="/raemian/client/agree"
 });

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import lombok.RequiredArgsConstructor;
 import raemian.client.domain.Member;
+import raemian.client.dto.JoinMemberForm;
 import raemian.common.dto.SearchDto;
 import raemian.common.mapper.ClientMemberMapper;
 
@@ -46,6 +47,11 @@ public class ClientMemberRepositoryImpl implements ClientMemberRepository{
 	@Override
 	public Optional<Member> findByMid(String mid) {
 		return Optional.ofNullable(memberMapper.findByMid(mid));
+	}
+
+	@Override
+	public int insert_member(JoinMemberForm joinMemberForm) {
+		return memberMapper.insert_member(joinMemberForm);
 	}
 
 	

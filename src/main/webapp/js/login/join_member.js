@@ -10,10 +10,10 @@ checkIdBtn.addEventListener("click", function(){
 	
 	if(mid == ""){
 		alert("사용하실 아이디를 입력해주세요.");
-		mid.focus();
+		joinForm.mid.focus();
 	} else if(!id_regex.test(mid)){
 		alert("아이디는 영문과 숫자만 사용 가능합니다.");
-		mid.focus();
+		joinForm.mid.focus();
 	} else{
 		fetch('./checkId', {
 		  method: 'POST',
@@ -48,9 +48,9 @@ checkIdBtn.addEventListener("click", function(){
  * SMS API 인증번호 발송 버튼 
  */
 var smsBtn = document.getElementById("sendSmsBtn");
-var smsNo = Math.floor(Math.random()*900000);
+var smsNo = Math.floor(100000 + Math.random() * 900000);
 smsBtn.addEventListener("click", function(){
-	if(joinForm.mtel.value == "" || isNaN(joinForm.mtel.value)){
+	if(joinForm.mtel.value == "" || isNaN(joinForm.mtel.value) || joinForm.mtel.value.length < 10){
 		alert("전화번호를 확인해주세요.");
 		joinForm.mtel.focus();
 	} else if(joinForm.mtel.value.lenth < 10){
@@ -89,6 +89,7 @@ smsBtn.addEventListener("click", function(){
 });
 
 /** 인증번호 일치 여부 */
+var isCheckSms = false;
 var checkSmsBtn = document.getElementById("checkSms");
 checkSmsBtn.addEventListener("click", function(){
 	if(joinForm.certification_num.value==""|| joinForm.certification_num.value.trim() == ""){
@@ -97,6 +98,9 @@ checkSmsBtn.addEventListener("click", function(){
 	} else{
 		if(joinForm.certification_num.value == smsNo){
 			alert("성공적으로 인증되었습니다.");
+			isCheckSms = true;
+			document.getElementById("certification_num").readOnly = "readOnly";
+			checkSmsBtn.style.display = "none";
 		} else{
 			alert("인증번호를 확인해주세요.");
 			joinForm.certification_num.focus();
@@ -140,6 +144,51 @@ function emailcheck(val){
 }
 
 
+
+/** 이메일 체크박스 컨트롤  **/
+document.getElementById('ckemail').addEventListener('change', function() {
+    var hiddenInput = document.getElementById('ckemailHidden');
+    if (this.checked) {
+        hiddenInput.value = 'Y';
+    } else {
+        hiddenInput.value = 'N';
+    }
+});
+
+/** 전화번호 체크박스 컨트롤  **/
+document.getElementById('cktel').addEventListener('change', function() {
+    var hiddenInput = document.getElementById('cktelHidden');
+    if (this.checked) {
+        hiddenInput.value = 'Y';
+    } else {
+        hiddenInput.value = 'N';
+    }
+});
+
+/** ckaddr 체크박스 컨트롤  **/
+document.getElementById('ckaddr').addEventListener('change', function() {
+    var hiddenInput = document.getElementById('ckaddrHidden');
+    if (this.checked) {
+        hiddenInput.value = 'Y';
+    } else {
+        hiddenInput.value = 'N';
+    }
+});
+
+/** cksms 체크박스 컨트롤  **/
+document.getElementById('cksms').addEventListener('change', function() {
+    var hiddenInput = document.getElementById('cksmsHidden');
+    if (this.checked) {
+        hiddenInput.value = 'Y';
+    } else {
+        hiddenInput.value = 'N';
+    }
+});
+
+
+
+
+
 /**
  * 회원가입 버튼
  */
@@ -153,14 +202,19 @@ joinBtn.addEventListener("click", function(){
 		joinForm.mid.focus();
 	} else if(!idDoubleCheck){
 		alert("아이디 중복확인을 진행해주세요.");
-	} else if(joinForm.mpw.value == ""){
-		alert("사용하실 비밀번호를 입력해주세요.");
+	} else if(joinForm.mpw.value == "" || joinForm.mpw.value.length < 6){
+		alert("6자 이상의 비밀번호를 사용해주세요.");
 		joinForm.mpw.focus();
 	} else if(joinForm.mpw2.value == ""){
 		alert("비밀번호 확인을 입력해주세요.");
 		joinForm.mpw2.focus();
-	} else if(joinForm.mtel.value==""){
-		alert("휴대번호를 입력해주세요.");
+	} else if(joinForm.mpw.value != joinForm.mpw2.value){
+		alert("비밀번호를 확인해주세요.");
+		joinForm.mpw.value = "";
+		joinForm.mpw2.value = "";
+		joinForm.mpw.focus();
+	} else if(joinForm.mtel.value=="" || isNaN(joinForm.mtel.value) || joinForm.mtel.value.length < 10){
+		alert("휴대번호를 확인해주세요.");
 		joinForm.mtel.focus();
 	} else if(joinForm.certification_num.value==""){
 		alert("인증번호를 입력해주세요.");
@@ -172,14 +226,18 @@ joinBtn.addEventListener("click", function(){
 		alert("도로명 주소를 확인해주세요.");
 	} else if(joinForm.mdetailaddr.value==""){
 		alert("상세주소를 확인해주세요.");
+	} else if(!isCheckSms){
+		alert("휴대폰 인증을 진행해주세요.");
+		joinForm.certification_num.focus();
 	} else{
+		
 		join_submit();
 	}
 });
 
 function join_submit(){
 	joinForm.method="POST";
-	joinForm.action="";
-	
+	joinForm.action="./join";
 	joinForm.submit();
 }
+

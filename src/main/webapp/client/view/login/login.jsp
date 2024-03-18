@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,20 +10,20 @@
 <meta property="og:title" content="인천검단 레미안">
 <title>인천검단 레미안</title>
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="css/normalize.css?v=<%=System.currentTimeMillis()%>">
-<link rel="stylesheet" type="text/css" href="css/slick.css?v=<%=System.currentTimeMillis()%>">
-<link rel="stylesheet" type="text/css" href="css/swiper.min.css?v=<%=System.currentTimeMillis()%>">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css?v=<%=System.currentTimeMillis()%>">
-<link rel="stylesheet" type="text/css" href="css/cal-style.css?v=<%=System.currentTimeMillis()%>">
-<link rel="stylesheet" type="text/css" href="css/common.css?v=<%=System.currentTimeMillis()%>">
-<link rel="stylesheet" href="./dadmin/css/sweetalert.min.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="/raemian/client/css/normalize.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="/raemian/client/css/slick.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="/raemian/client/css/swiper.min.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="/raemian/client/css/bootstrap.min.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="/raemian/client/css/cal-style.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="/raemian/client/css/common.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" href="/raemian/client/dadmin/css/sweetalert.min.css?v=<%=System.currentTimeMillis()%>">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js?v=<%=System.currentTimeMillis()%>"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="/raemian/client/js/bootstrap.min.js"></script>
     
-<link rel="stylesheet" type="text/css" href="./css/top.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="/raemian/client/css/top.css?v=<%=System.currentTimeMillis()%>">
     
 <!-- 추가된 css -->
-<link rel="stylesheet" type="text/css" href="./css/new_member.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="/raemian/client/css/new_member.css?v=<%=System.currentTimeMillis()%>">
 <!-- 추가된 css -->
 </head>
 
@@ -47,7 +48,7 @@
       <fieldset class="mbship_box">
         <span class="agree_span">
         <ul class="mblogin">
-            <li><img src="./img/mainlogin.png"></li>
+            <li><img src="/raemian/client/img/mainlogin.png"></li>
             <li>
                 <span>EXPERIENCE OF PRIDE <br> LOGIN</span>
                 <span>
@@ -69,9 +70,12 @@
   <!-- 카피라이터 시작 -->
 	  	<%@ include file="../fragments/footer.jsp" %>	
  <!-- 카피라이터 종료 -->
+ <c:if test="${not empty msg}">
+ <script>alert("${msg}");</script>
+ </c:if>
 </div>
     </div>
-    <script src="../js/login/login.js?v=<%=System.currentTimeMillis()%>"></script>
+    <script src="/raemian/js/login/login.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>
     

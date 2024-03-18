@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import raemian.client.domain.Member;
+import raemian.client.dto.JoinMemberForm;
 import raemian.common.dto.SearchDto;
 
 public interface ClientMemberRepository {
@@ -19,4 +20,6 @@ public interface ClientMemberRepository {
 	int countBySearchDto(SearchDto searchDto);
 	
 	int deleteByIdx(int midx);
+	
+	int insert_member(JoinMemberForm joinMemberForm);
 }

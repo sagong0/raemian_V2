@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import raemian.client.domain.Member;
+import raemian.client.dto.JoinMemberForm;
 import raemian.common.dto.SearchDto;
 import raemian.common.repository.ClientMemberRepository;
 
@@ -51,5 +52,12 @@ public class ClientMemberService {
 	 */
 	public Optional<Member> findByMid(String mid) {
 		return memberRepository.findByMid(mid);
+	}
+	
+	/**
+	 * 회원가입 (INSERT)
+	 */
+	public int insert_member(JoinMemberForm joinMemberForm) {
+		return memberRepository.insert_member(joinMemberForm);
 	}
 }

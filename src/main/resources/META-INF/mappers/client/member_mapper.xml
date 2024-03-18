@@ -66,4 +66,9 @@
 	WHERE mid = #{mid}
 	</select>
 	
+	<insert id="insert_member" parameterType="raemian.client.dto.JoinMemberForm">
+	INSERT INTO join_member
+	VALUES('0',#{mname},#{mid},password(#{mpw}),#{mtel},#{memail},#{mzipcode},#{mstreetaddr},#{mdetailaddr},#{ckemail},#{cktel},#{ckaddr},#{cksms},now(),'O')
+	</insert>
+	
 </mapper>

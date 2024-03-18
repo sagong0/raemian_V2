@@ -18,7 +18,7 @@
                       </div>
                   </div>
                   <p class="copyright-p">
-                      <img src="img/logo_ft.png" class="img-responsive center-block" alt="">
+                      <img src="/raemian/client/img/logo_ft.png" class="img-responsive center-block" alt="">
                   </p>
                   <div class="right-line px-h"></div>
               </div>

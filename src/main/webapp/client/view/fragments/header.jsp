@@ -4,8 +4,8 @@
 	<header id="hd">
 		<div class="top_menu">
 	        <ul class="top_menu_list">
-	        	<li><a href="./login">로그인</a></li>
-		        <li><a href="./agree">회원가입</a></li>
+	        	<li><a href="/raemian/client/login">로그인</a></li>
+		        <li><a href="/raemian/client/agree">회원가입</a></li>
 		        <li><a href="#">FAQ</a></li>
 		        <li><a href="#">공지사항</a></li>
 		    </ul>
