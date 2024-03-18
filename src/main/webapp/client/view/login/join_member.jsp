@@ -9,20 +9,20 @@
 <meta property="og:title" content="인천검단 레미안">
 <title>인천검단 레미안</title>
 <!-- css -->
-<link rel="stylesheet" type="text/css" href="css/normalize.css">
-<link rel="stylesheet" type="text/css" href="css/slick.css">
-<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/cal-style.css">
-<link rel="stylesheet" type="text/css" href="css/common.css">
-<link rel="stylesheet" href="./dadmin/css/sweetalert.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/normalize.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="css/slick.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="css/swiper.min.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="css/cal-style.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" type="text/css" href="css/common.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" href="./dadmin/css/sweetalert.min.css?v=<%=System.currentTimeMillis()%>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js?v=<%=System.currentTimeMillis()%>"></script>
 <script src="js/bootstrap.min.js"></script>
     
-<link rel="stylesheet" type="text/css" href="./css/top.css?v=1">
+<link rel="stylesheet" type="text/css" href="./css/top.css?v=<%=System.currentTimeMillis()%>">
     
 <!-- 추가된 css -->
-<link rel="stylesheet" type="text/css" href="./css/new_member.css?v=26">
+<link rel="stylesheet" type="text/css" href="./css/new_member.css?v=<%=System.currentTimeMillis()%>">
 <!-- 추가된 css -->
 </head>
 

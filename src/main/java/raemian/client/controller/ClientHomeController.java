@@ -47,6 +47,13 @@ public class ClientHomeController {
 		return "client/view/login/login";
 	}
 	
+	
+	@GetMapping("/agree")
+	public String agreePage() {
+		return "client/view/login/join_agree";
+	}
+	
+	
 	@GetMapping("/join")
 	public String joinFormCreate() {
 		return "client/view/login/join_member";
