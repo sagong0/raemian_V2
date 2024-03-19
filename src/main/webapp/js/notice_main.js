@@ -11,6 +11,7 @@ function searchByTitle(){
 	location.href="./?searchWord="+searchVal;
 }
 
+
 /**
  * 페이징 기능
  */

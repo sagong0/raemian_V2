@@ -65,14 +65,23 @@
         </c:forEach>
                 
         <span class="pages">
-          <ul>
-            <li>1</li>
+          <ul style="display:flex; justify-content: center">
+            <c:set var="searchWord" value="${param.searchWord}" />
+           <!-- Page번호 시작 -->
+			<c:forEach var="pNo" begin="${list.startPage}" end="${list.endPage}" step="1">
+				<li style="color:white;"
+				onclick="noticePagination(${pNo},'${not empty searchWord ? searchWord : ''}');"
+				class="<c:if test='${param.currentPage eq pNo}'>active</c:if>">
+				${pNo}
+				</li>
+			</c:forEach>
+			<!-- Page번호 끝 -->
           </ul>
         </span>
           
         <span class="search_css">
-        <input type="text" class="search_in" placeholder="검색할 제목을 입력하세요">
-        <input type="submit" value="검색" class="search_btn">
+        <input type="text" id="searchWord" class="search_in" placeholder="검색할 제목을 입력하세요">
+        <input type="submit" onclick="searchByTitle();" value="검색" class="search_btn">
         </span>
       </fieldset>
     
@@ -81,6 +90,7 @@
   <!-- 카피라이터 시작 -->
 <%@ include file="../fragments/footer.jsp" %>	
  <!-- 카피라이터 종료 -->
+ <script src="/raemian/js/notice_main.js?v=<%=System.currentTimeMillis()%>"></script>
 </div>
     </div>
 </body>
