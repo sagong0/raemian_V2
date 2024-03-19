@@ -16,7 +16,5 @@ public class Notice {
 	private String originalFileName;
 	private String storeFileName;
 	private int ncount;
-	private LocalDate nindate;
-	
-	
+	private LocalDate nindate;	
 }

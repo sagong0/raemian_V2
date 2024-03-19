@@ -5,6 +5,7 @@
 	
 	<select id="findAll" resultType="raemian.admin.domain.Notice">
 	SELECT * FROM notice
+	ORDER BY nidx desc
 	</select>
 	
 	

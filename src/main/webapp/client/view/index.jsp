@@ -103,6 +103,9 @@
   <!-- // footer -->
 
 </div>
+<c:if test="${not empty msg}">
+<script>alert("${msg}")</script>
+</c:if>
 <!-- //wrap -->
 <script src="js/slick.min.js?v=<%=System.currentTimeMillis()%>"></script>
 <script src="js/common.js?v=<%=System.currentTimeMillis()%>"></script>

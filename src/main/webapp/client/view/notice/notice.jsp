@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -38,48 +38,51 @@
 <div id="container">
 <div id="index">
     
-<!-- 로그인 화면 시작 -->
+<!-- 서브 화면 시작 -->
     <label class="mbship_title">
-        <p>MEMBER-LOGIN</p>
+        <p>NOTICE</p>
         <ul>
-          <li>로그인하시면, 회원 별 다양한 맞춤 서비스를 이용하실 수 있습니다.</li>
+          <li>RAEMIAN 새로운 소식을 확인하세요</li>
         </ul>
-      </label>
-      
-      <form id="loginForm">
+    </label>
       <fieldset class="mbship_box">
-        <span class="agree_span">
-        <ul class="mblogin">
-            <li><img src="/raemian/client/img/mainlogin.png"></li>
-            <li>
-                <span>EXPERIENCE OF PRIDE <br> LOGIN</span>
-                <span>
-                	
-                    <ol class="login_ols">
-                        <li><input type="text" name="aid" class="login_input" placeholder="아이디를 입력하세요"></li>
-                        <li><input type="password" name="apw" class="login_input"  placeholder="패스워드를 입력하세요"></li>
-                        <li><button type="submit" id="loginBtn" class="login_btn1">로그인</button></li>
-                        <li><button type="button" id="joinBtn" class="login_btn2">회원가입</button></li>
-                        <li style="cursor: pointer;">아이디 찾기 / 비밀번호 찾기</li>
-                    </ol>
-                </span>
-            </li>
+        <ul>
+        <li>번호</li>  
+        <li>제목</li>  
+        <li>조회수</li>     
+        <li>글쓴이</li>  
+        <li>등록일</li>      
         </ul>
+        
+        <c:forEach var="notice" items="${notices}" varStatus="loop">
+	        <ul>
+	        <li>${loop.index+1}</li>  
+	        <li style="text-align: left;">${notice.ntitle}</li>  
+	        <li>${notice.ncount}</li>     
+	        <li>${notice.nwriter}</li>  
+	        <li>${notice.nindate}</li>      
+	        </ul>
+        </c:forEach>
+                
+        <span class="pages">
+          <ul>
+            <li>1</li>
+          </ul>
+        </span>
+          
+        <span class="search_css">
+        <input type="text" class="search_in" placeholder="검색할 제목을 입력하세요">
+        <input type="submit" value="검색" class="search_btn">
         </span>
       </fieldset>
-      </form>
     
-<!-- 로그인 화면 종료 -->
+<!-- 서브 화면 종료 -->
 </div>
   <!-- 카피라이터 시작 -->
-	  	<%@ include file="../fragments/footer.jsp" %>	
+<%@ include file="../fragments/footer.jsp" %>	
  <!-- 카피라이터 종료 -->
- <c:if test="${not empty msg}">
- <script>alert("${msg}");</script>
- </c:if>
 </div>
     </div>
-    <script src="/raemian/js/login/login.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>
     

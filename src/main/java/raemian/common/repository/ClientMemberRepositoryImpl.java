@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 import lombok.RequiredArgsConstructor;
+import raemian.admin.dto.AdminLoginDto;
 import raemian.client.domain.Member;
 import raemian.client.dto.JoinMemberForm;
 import raemian.common.dto.SearchDto;
@@ -52,6 +53,12 @@ public class ClientMemberRepositoryImpl implements ClientMemberRepository{
 	@Override
 	public int insert_member(JoinMemberForm joinMemberForm) {
 		return memberMapper.insert_member(joinMemberForm);
+	}
+
+	
+	@Override
+	public Optional<Member> findByLoginDto(AdminLoginDto loginDto) {
+		return Optional.ofNullable(memberMapper.findByLoginDto(loginDto));
 	}
 
 	

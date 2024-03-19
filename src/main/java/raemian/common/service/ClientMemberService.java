@@ -8,11 +8,14 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import raemian.admin.dto.AdminLoginDto;
 import raemian.client.domain.Member;
 import raemian.client.dto.JoinMemberForm;
 import raemian.common.dto.SearchDto;
 import raemian.common.repository.ClientMemberRepository;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ClientMemberService {
@@ -60,4 +63,13 @@ public class ClientMemberService {
 	public int insert_member(JoinMemberForm joinMemberForm) {
 		return memberRepository.insert_member(joinMemberForm);
 	}
+	
+	/**
+	 * LOGIN PART
+	 */
+	public Optional<Member> login(AdminLoginDto loginDto) {
+		return memberRepository.findByLoginDto(loginDto);
+	}
+	
+	
 }

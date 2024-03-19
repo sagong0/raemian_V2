@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import raemian.admin.dto.AdminLoginDto;
 import raemian.client.domain.Member;
 import raemian.client.dto.JoinMemberForm;
 import raemian.common.dto.SearchDto;
@@ -14,6 +15,8 @@ public interface ClientMemberRepository {
 	List<Member> findBySearchDtoAndCurrentPage(Map<String, Object> maps);
 	
 	Optional<Member> findByMid(String mid);
+	
+	Optional<Member> findByLoginDto(AdminLoginDto loginDto);
 	
 	int countAll();
 	

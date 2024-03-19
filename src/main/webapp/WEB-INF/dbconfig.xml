@@ -54,6 +54,7 @@
         	<mvc:exclude-mapping path="/admin/**"/>
         	<mvc:exclude-mapping path="/client/**"/>
         	<mvc:exclude-mapping path="/faqs/**"/>
+        	<mvc:exclude-mapping path="/notices/**"/>
         	<mvc:exclude-mapping path="/*.ico"/>
         	<mvc:exclude-mapping path="/img/**"/>
         	<mvc:exclude-mapping path="/css/**"/>

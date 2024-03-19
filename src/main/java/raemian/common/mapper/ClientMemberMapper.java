@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import raemian.admin.dto.AdminLoginDto;
 import raemian.client.domain.Member;
 import raemian.client.dto.JoinMemberForm;
 import raemian.common.dto.SearchDto;
@@ -16,6 +17,8 @@ public interface ClientMemberMapper {
 	List<Member> findBySearchDtoAndCurrentPage(Map<String, Object> maps);
 	
 	Member findByMid(String mid);
+	
+	Member findByLoginDto(AdminLoginDto loginDto);
 	
 	int countAll();
 	

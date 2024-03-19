@@ -71,4 +71,16 @@
 	VALUES('0',#{mname},#{mid},password(#{mpw}),#{mtel},#{memail},#{mzipcode},#{mstreetaddr},#{mdetailaddr},#{ckemail},#{cktel},#{ckaddr},#{cksms},now(),'O')
 	</insert>
 	
+	
+	<!-- 로그읜 처리 -->
+	<select id="findByLoginDto" parameterType="raemian.admin.dto.AdminLoginDto" resultType="raemian.client.domain.Member">
+	SELECT * FROM join_member
+	WHERE mid=#{aid}
+	AND
+	mpw = password(#{apw})
+	</select>
+	
+	
+	
+	
 </mapper>
