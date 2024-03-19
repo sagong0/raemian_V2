@@ -134,6 +134,9 @@ public class ClientHomeController {
 		return sign;
 	}
 	
-	
-	
+	@GetMapping("/reserve")
+	public String reservePage() {
+		log.info("******!!!!!!!!******");
+		return "client/view/reservation/reserve_in";
+	}
 }

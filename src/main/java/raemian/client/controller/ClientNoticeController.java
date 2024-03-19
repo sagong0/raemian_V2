@@ -26,9 +26,7 @@ public class ClientNoticeController {
 	public String mainNotices(
 			@RequestParam(required = false) String searchWord,
 			@RequestParam(defaultValue = "1") int currentPage,
-			Model model) {
-		log.info("saerchWord = {} ", searchWord);
-		
+			Model model) {	
 		List<Notice> notices = null;
 		int total = 0;
 		
