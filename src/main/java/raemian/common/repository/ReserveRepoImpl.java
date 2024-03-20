@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import lombok.RequiredArgsConstructor;
 import raemian.client.domain.Reserve;
+import raemian.client.dto.ReserveForm;
 import raemian.common.dto.SearchDto;
 import raemian.common.mapper.ReserveMapper;
 
@@ -23,5 +24,10 @@ public class ReserveRepoImpl implements ReserveRepository{
 	@Override
 	public int cancel_reserve(int ridx) {
 		return reserveMapper.cancelReserve(ridx);
+	}
+
+	@Override
+	public int insert_reserve(ReserveForm reserveForm) {
+		return reserveMapper.insert_reserve(reserveForm);
 	}
 }

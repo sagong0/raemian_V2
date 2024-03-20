@@ -1,10 +1,12 @@
 package raemian.client.controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -145,8 +147,9 @@ public class ClientHomeController {
 	
 	@PostMapping("/reserve")
 	public String reserveForm(@Valid @ModelAttribute ReserveForm reserveForm,
+			HttpServletResponse response,
 			BindingResult bindingResult,
-			Model model) {
+			Model model) throws IOException {
 		/** 예약일자 GLOBAL Validation **/
 		validateRdate(reserveForm, bindingResult);
 		
@@ -155,9 +158,8 @@ public class ClientHomeController {
 			return "client/view/reservation/reserve_in";
 		}
 		
-		// 성공로직 
-		reserveService.insert_reserve(reserveForm);
-		return null;
+		// 성공로직
+		return reserveService.insert_reserve(reserveForm,response);
 	}
 
 	
