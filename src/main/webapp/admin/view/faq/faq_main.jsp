@@ -49,7 +49,7 @@
      <c:forEach var="faq" items="${faqs}">
        <ul>
         <li>Q</li>
-        <li style="text-align: left; justify-content: flex-start;">${faq.fquestion}</li>
+        <li style="text-align: left; justify-content: flex-start;" onclick="toggleAnswer(${faq.fidx})">${faq.fquestion}</li>
         <li>${faq.fwriter}</li>
         <li>${faq.findate}</li>
         <li>
@@ -57,7 +57,7 @@
         </li>
        </ul>
       <!-- display:none 또는 display:flex 로 해야합니다. -->
-       <ol style="display:none;" >
+       <ol id="answer_${faq.fidx}" style="display:none;" >
         <li>A</li>
         <li style="text-align: left; justify-content: flex-start;">${faq.fanswer}</li>
        </ol>

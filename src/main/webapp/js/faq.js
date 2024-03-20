@@ -45,6 +45,18 @@ searchBtn.addEventListener("click", function(){
 });
 
 
+/**
+ * 질문 클릭시 해당 답변만 출력.
+ */
+function toggleAnswer(fidx){
+	console.log(fidx);
+	var answerElement = document.getElementById('answer_' + fidx);
+        if (answerElement.style.display === 'none') {
+            answerElement.style.display = 'block';
+        } else {
+            answerElement.style.display = 'none';
+        }
+}
 
 
 
