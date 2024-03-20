@@ -1,6 +1,7 @@
 package raemian.common.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -29,5 +30,10 @@ public class ReserveRepoImpl implements ReserveRepository{
 	@Override
 	public int insert_reserve(ReserveForm reserveForm) {
 		return reserveMapper.insert_reserve(reserveForm);
+	}
+
+	@Override
+	public Reserve findBySessionInfo(Map<String, String> sessionInfoMap) {
+		return reserveMapper.findBySessionInfo(sessionInfoMap);
 	}
 }

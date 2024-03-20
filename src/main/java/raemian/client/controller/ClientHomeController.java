@@ -2,7 +2,9 @@ package raemian.client.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 import raemian.admin.domain.ConfigInfo;
 import raemian.admin.dto.AdminLoginDto;
 import raemian.client.domain.Member;
+import raemian.client.domain.Reserve;
 import raemian.client.dto.JoinMemberForm;
 import raemian.client.dto.ReserveForm;
 import raemian.common.service.ClientMemberService;
@@ -140,6 +143,9 @@ public class ClientHomeController {
 		return sign;
 	}
 	
+	/**
+	 * 예약 페이지 
+	 */
 	@GetMapping("/reserve")
 	public String reserveFormCreate() {
 		return "client/view/reservation/reserve_in";
@@ -162,6 +168,25 @@ public class ClientHomeController {
 		return reserveService.insert_reserve(reserveForm,response);
 	}
 
+	/**
+	 * 예약 확인 페이지
+	 * (예약 수정 페이지)
+	 * @throws IOException 
+	 */
+	@GetMapping("/reserve/modify")
+	public String reserveModifyFormCreate(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			Model model) throws IOException {
+		Map<String, String> sessionInfoMap = extractSessionInfo(request);
+		Reserve reserve = reserveService.findBySessionInfo(sessionInfoMap,response);
+		
+		model.addAttribute("reserve", reserve);
+		return "client/view/reservation/reservation_ck";
+	}
+
+	
+	
 	
 	/**
 	 * 편의 메소드 
@@ -175,5 +200,17 @@ public class ClientHomeController {
 		if(rdate < p_today) {
 			bindingResult.reject("rdateErr", "예약일자는 오늘 이후 날짜로 선택해주세요.");
 		}
+	}
+	
+	private Map<String,String> extractSessionInfo(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		Member member = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
+		String mid = member.getMid();
+		String mname = member.getMname();
+		
+		Map<String, String> maps = new HashMap<String, String>();
+		maps.put("mid", mid);
+		maps.put("mname", mname);
+		return maps;
 	}
 }

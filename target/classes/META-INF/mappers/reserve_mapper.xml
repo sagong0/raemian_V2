@@ -21,6 +21,17 @@
     </where>
 	</select>
 	
+	<select id="findBySessionInfo" parameterType="Map" resultType="raemian.client.domain.Reserve">
+	SELECT * FROM reservation
+	WHERE rid = #{mid}
+	AND
+	rname = #{mname}
+	</select>
+	
+	
+	
+	
+	
 	<insert id="insert_reserve" parameterType="raemian.client.dto.ReserveForm">
 	INSERT INTO reservation
 	VALUES('0',#{rid},#{rname},#{rdate},#{rtime},#{rtel},#{rcount},1)

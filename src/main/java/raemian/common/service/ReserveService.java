@@ -3,6 +3,7 @@ package raemian.common.service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,6 +27,25 @@ public class ReserveService {
 	public List<Reserve> findReserves(SearchDto searchDto){
 		return reserveRepository.findReserves(searchDto);
 	}
+	
+	public Reserve findBySessionInfo(Map<String, String> sessionInfoMap, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8;");
+		
+		Reserve reserve = reserveRepository.findBySessionInfo(sessionInfoMap);
+		if(reserve == null) {
+			PrintWriter pw = response.getWriter();
+			pw.println("<script>alert('예약된 내용이 없습니다.');"
+	        		+ "window.location.href='/raemian/client/reserve';"
+	        		+ "</script>");
+	        pw.flush();
+		}
+		
+		return reserve;
+	}
+	
+	
+	
+	
 	
 	/**
 	 * 취소 PART
