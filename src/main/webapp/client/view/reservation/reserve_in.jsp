@@ -53,53 +53,64 @@
           <li style="color: #000;">※ 예약하실 일자 및 예약자 정보를 입력하세요</li>
         </ul>
       </label>
-    <form>
+    <form id="reserveForm">
+    
+    <!-- Validation Erorr 메세지 출력  -->
+    <c:if test="${not empty errors}">
+        <div style="color: red; display: flex; justify-content: center;">
+	        <c:forEach var="error" items="${errors}">
+	            <p class="field-error">${error.defaultMessage}</p>
+	        </c:forEach>
+	    </div>
+    </c:if>
+    
+    
       <fieldset class="mbship_box">
         <h3>예약일자 입력 <span style="display: inline-block; font-size: 12px; vertical-align: 5px; float: right;">■ 표시는 필수 입력 항목입니다.</span></h3>
         <span class="agree_span">
         <ol class="mbinfos">
         <li><em class="ck_font">■</em> 아이디</li>
         <li>
-        <input type="text" class="mbinput1" readonly>
+        <input type="text" name="rid" value="${sessionScope.loginMember.mid}" class="mbinput1" readonly>
         </li>
         <li><em class="ck_font">■</em> 고객명</li>
         <li>
-        <input type="text" class="mbinput2" readonly>
+        <input type="text" name="rname" value="${sessionScope.loginMember.mname}" class="mbinput2" readonly>
         </li>
         <li><em class="ck_font">■</em> 예약일자</li>
         <li>
-        <input type="date" class="mbinput1">
+        <input type="date" name="rdate" class="mbinput1">
         </li>
         <li><em class="ck_font">■</em> 예약시간</li>
         <li>
-        <select class="mbinput1">
-        <option>시간선택</option>    
-        <option>09:00</option>        
-        <option>10:00</option>
-        <option>11:00</option>
-        <option>14:00</option>
-        <option>15:00</option>
-        <option>16:00</option>
-        <option>17:00</option>
-        </select>
+        <select name="rtime" class="mbinput1">
+		    <option value="">시간선택</option>
+		    <option value="09:00">09:00</option>        
+		    <option value="10:00">10:00</option>
+		    <option value="11:00">11:00</option>
+		    <option value="14:00">14:00</option>
+		    <option value="15:00">15:00</option>
+		    <option value="16:00">16:00</option>
+		    <option value="17:00">17:00</option>
+		</select>
         </li>
         <li><em class="ck_font">■</em> 휴대전화번호</li>
         <li>
-        <input type="text" class="mbinput2" readonly>
+        <input type="text" name="rtel" value="${sessionScope.loginMember.mtel}" class="mbinput2" readonly>
         </li>
         <li><em class="ck_font">■</em> 인원수</li>
         <li>
         <label class="ck_label">
-        <input type="radio" class="ck_label"> 1명
+        <input type="radio" checked="checked" value="1" name="rcount" class="ck_label"> 1명
         </label>
         <label class="ck_label">
-        <input type="radio" class="ck_label"> 2명
+        <input type="radio" name="rcount" value="2" class="ck_label"> 2명
         </label>
         </li>
         </ol>
         </span>
         <span class="span_buttons">
-        <button type="button" class="next_btn1_1">예약하기</button>
+        <button type="button" id="reserveBtn" class="next_btn1_1">예약하기</button>
         </span>
       </fieldset>
     </form>
@@ -108,6 +119,7 @@
   <!-- 카피라이터 시작 -->
 	  	<%@include file="../fragments/footer.jsp"%>	
  <!-- 카피라이터 종료 -->
+ <script src="/raemian/js/reserve/client_reserve_in.js?v=<%=System.currentTimeMillis()%>"></script>
 </div>
     </div>
 </body>

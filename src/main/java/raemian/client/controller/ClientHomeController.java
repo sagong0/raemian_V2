@@ -1,5 +1,6 @@
 package raemian.client.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +26,10 @@ import raemian.admin.domain.ConfigInfo;
 import raemian.admin.dto.AdminLoginDto;
 import raemian.client.domain.Member;
 import raemian.client.dto.JoinMemberForm;
+import raemian.client.dto.ReserveForm;
 import raemian.common.service.ClientMemberService;
 import raemian.common.service.ConfigInfoService;
+import raemian.common.service.ReserveService;
 import raemian.common.service.SmsApiService;
 import raemian.consts.SessionConst;
 
@@ -39,6 +42,7 @@ public class ClientHomeController {
 	private final ConfigInfoService configInfoService;
 	private final ClientMemberService clientMemberService;
 	private final SmsApiService smsService;
+	private final ReserveService reserveService;
 	
 	@GetMapping("/")
 	public String home(Model model) {
@@ -135,8 +139,39 @@ public class ClientHomeController {
 	}
 	
 	@GetMapping("/reserve")
-	public String reservePage() {
-		log.info("******!!!!!!!!******");
+	public String reserveFormCreate() {
 		return "client/view/reservation/reserve_in";
+	}
+	
+	@PostMapping("/reserve")
+	public String reserveForm(@Valid @ModelAttribute ReserveForm reserveForm,
+			BindingResult bindingResult,
+			Model model) {
+		/** 예약일자 GLOBAL Validation **/
+		validateRdate(reserveForm, bindingResult);
+		
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("errors",bindingResult.getAllErrors());
+			return "client/view/reservation/reserve_in";
+		}
+		
+		// 성공로직 
+		reserveService.insert_reserve(reserveForm);
+		return null;
+	}
+
+	
+	/**
+	 * 편의 메소드 
+	 */
+	private void validateRdate(ReserveForm reserveForm, BindingResult bindingResult) {
+		String today = LocalDate.now().toString();
+		int p_today = Integer.valueOf(today.replaceAll("-", ""));
+		
+		int rdate = Integer.valueOf(reserveForm.getRdate().replaceAll("-", ""));
+		
+		if(rdate < p_today) {
+			bindingResult.reject("rdateErr", "예약일자는 오늘 이후 날짜로 선택해주세요.");
+		}
 	}
 }

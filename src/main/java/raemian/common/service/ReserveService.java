@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import raemian.client.domain.Reserve;
+import raemian.client.dto.ReserveForm;
 import raemian.common.dto.SearchDto;
 import raemian.common.repository.ReserveRepository;
 
@@ -24,5 +25,11 @@ public class ReserveService {
 	 */
 	public int cancel_reserve(int ridx) {
 		return reserveRepository.cancel_reserve(ridx);
+	}
+	
+	public int insert_reserve(ReserveForm reserveForm) {
+		
+		
+		return 0;
 	}
 }
