@@ -43,7 +43,28 @@ public class ReserveService {
 		return reserve;
 	}
 	
-	
+	/**
+	 * 수정 PART 
+	 */
+	public void modify_reserve(ReserveForm reserveForm,HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8;");
+		PrintWriter pw = response.getWriter();
+		
+		int result= reserveRepository.modify_reserve(reserveForm);
+		if(result <= 0) {
+			pw.println("<script>alert('변경에 실패하였습니다.');"
+	        		+ "window.location.href='/raemian/client/reserve/modify';"
+	        		+ "</script>");
+	        pw.flush();    
+	        return;
+		}
+		
+		pw.println("<script>"
+				+ "alert('예약내용이 변경 되었습니다.');"
+        		+ "window.location.href='/raemian/client/';"
+        		+ "</script>");
+        pw.flush();
+	}
 	
 	
 	

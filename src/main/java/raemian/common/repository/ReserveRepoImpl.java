@@ -36,4 +36,9 @@ public class ReserveRepoImpl implements ReserveRepository{
 	public Reserve findBySessionInfo(Map<String, String> sessionInfoMap) {
 		return reserveMapper.findBySessionInfo(sessionInfoMap);
 	}
+
+	@Override
+	public int modify_reserve(ReserveForm reserveForm) {
+		return reserveMapper.modify_reserve(reserveForm);
+	}
 }

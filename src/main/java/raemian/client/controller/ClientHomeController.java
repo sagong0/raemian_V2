@@ -1,6 +1,7 @@
 package raemian.client.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -83,7 +84,9 @@ public class ClientHomeController {
 	public String logOut(HttpServletRequest request,
 			RedirectAttributes redirectAttributes) {
 		HttpSession session = request.getSession(false);
-		session.invalidate();
+		if(session != null) {
+			session.invalidate();
+		}
 		redirectAttributes.addFlashAttribute("msg", "성공적으로 로그아웃 되었습니다.");
 		return "redirect:/client/";
 	}
@@ -167,11 +170,12 @@ public class ClientHomeController {
 		// 성공로직
 		return reserveService.insert_reserve(reserveForm,response);
 	}
+	
+	
+	
 
 	/**
-	 * 예약 확인 페이지
-	 * (예약 수정 페이지)
-	 * @throws IOException 
+	 * 예약 확인 페이지  (예약 수정 페이지) 
 	 */
 	@GetMapping("/reserve/modify")
 	public String reserveModifyFormCreate(
@@ -184,7 +188,44 @@ public class ClientHomeController {
 		model.addAttribute("reserve", reserve);
 		return "client/view/reservation/reservation_ck";
 	}
+	
+	@PostMapping("/reserve/modify")
+	public void reserveModifyForm(
+			HttpServletRequest request,
+			HttpServletResponse response
+			,@ModelAttribute ReserveForm reserveForm) throws IOException {
+		
+		Map<String, String> sessionInfoMap = extractSessionInfo(request);
+		Reserve reserve = reserveService.findBySessionInfo(sessionInfoMap, response);
+		// 변경 불가능한 상태.
+		if(reserve.getRchance() == 0) {
+			PrintWriter pw = response.getWriter();
+			pw.println("<script>alert('예약 변경 가능 횟수를 초과하였습니다.');"
+	        		+ "window.location.href='/raemian/client/reserve/modify';"
+	        		+ "</script>");
+			pw.flush();
+			return;
+		}
+		
+		// 변경 가능 상태. (성공로직)
+		reserveService.modify_reserve(reserveForm,response);
+	}
 
+	/**
+	 * 예약 취소 !!
+	 * @throws IOException 
+	 */
+	@GetMapping("/reserve/cancel")
+	public String reserveCancelFormCreate(HttpServletRequest request,
+			HttpServletResponse response,
+			Model model) throws IOException {
+		Map<String, String> sessionInfoMap = extractSessionInfo(request);
+		// null 처리가 된 reserve
+		Reserve reserve = reserveService.findBySessionInfo(sessionInfoMap, response);
+		model.addAttribute("reserve", reserve);
+		return "client/view/reservation/reservation_cancel";
+	}
+	
 	
 	
 	

@@ -14,5 +14,7 @@ public interface ReserveMapper {
 	
 	int insert_reserve(ReserveForm reserveForm);
 	
+	int modify_reserve(ReserveForm reserveForm);
+	
 	int cancelReserve(int ridx);
 }

@@ -16,4 +16,6 @@ public interface ReserveRepository {
 	int insert_reserve(ReserveForm reserveForm);
 	
 	int cancel_reserve(int ridx);
+	
+	int modify_reserve(ReserveForm reserveForm);
 }

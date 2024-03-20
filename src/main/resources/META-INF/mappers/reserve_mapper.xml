@@ -28,21 +28,27 @@
 	rname = #{mname}
 	</select>
 	
-	
-	
-	
-	
 	<insert id="insert_reserve" parameterType="raemian.client.dto.ReserveForm">
 	INSERT INTO reservation
 	VALUES('0',#{rid},#{rname},#{rdate},#{rtime},#{rtel},#{rcount},1)
 	</insert>
-	
-	
 
 	<delete id="cancelReserve">
 	DELETE FROM reservation
 	WHERE ridx=#{ridx}
 	</delete>
+	
+	<update id="modify_reserve" parameterType="raemian.client.dto.ReserveForm">
+	UPDATE reservation
+	SET
+	rid=#{rid},
+	rname=#{rname},
+	rdate=#{rdate},
+	rtime=#{rtime},
+	rtel=#{rtel},
+	rcount=#{rcount},
+	rchance=0
+	</update>
 
 
 </mapper>

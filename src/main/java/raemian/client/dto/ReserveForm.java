@@ -1,7 +1,5 @@
 package raemian.client.dto;
 
-import java.time.LocalDateTime;
-
 import javax.validation.constraints.NotEmpty;
 
 import lombok.Getter;
