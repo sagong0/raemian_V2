@@ -23,4 +23,6 @@ public interface AdminNoticeMapper {
 	int delNotice(int nidx);
 	
 	Notice findByIdx(int nidx);
+	
+	int update_count(int nidx);
 }

@@ -21,4 +21,6 @@ public interface NoticeRepository {
 	int delNotice(int nidx);
 	
 	Notice findByNidx(int nidx);
+	
+	int update_count(int nidx);
 }

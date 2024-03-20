@@ -50,4 +50,11 @@
 	WHERE nidx=#{nidx}
 	</delete>
 	
+	<!-- 조회수 업  -->
+	<update id="update_count">
+	UPDATE notice
+	set ncount=ncount+1
+	WHERE
+	nidx = #{nidx}
+	</update>
 </mapper>

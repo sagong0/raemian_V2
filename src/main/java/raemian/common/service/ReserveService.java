@@ -82,7 +82,8 @@ public class ReserveService {
 			return "client/view/reservation/reserve_in";
 		}
 		PrintWriter pw = response.getWriter();
-        pw.println("<script>alert('성공적으로 예약되었습니다.');"
+        pw.println("<script>"
+        		+ "alert('성공적으로 예약되었습니다.');"
         		+ "window.location.href='/raemian/client/';"
         		+ "</script>");
         pw.flush();

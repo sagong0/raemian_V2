@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,9 +89,15 @@ public class AdminNoticeController {
 		if(findNotice == null) {
 			return "admin/view/notice_write";
 		}
+		// 조회수 up
+		int countUpResult = noticeService.countUp(nidx);
+		if(countUpResult <= 0) {
+			return "admin/view/notice_main";
+		}
 		model.addAttribute("notice", findNotice);
 		return "admin/view/notice_view";
 	}
+	
 	
 	
 	@PostMapping("/delete")

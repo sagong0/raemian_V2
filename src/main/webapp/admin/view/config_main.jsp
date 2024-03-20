@@ -128,7 +128,7 @@ List<AdminMember> admins = (List<AdminMember>) request.getAttribute("admins");
 						<c:set var="aarea" value="${param.aarea}" />
 						<!-- Previous 시작 -->
 							<li style="color: white;" 
-							onclick="adminPagination(${list.startPage > 5 ? listt.startPage - 5 : 1 },'${not empty aarea ? aarea : ''}');"
+							onclick="adminPagination(${list.startPage > 5 ? list.startPage - 5 : 1 },'${not empty aarea ? aarea : ''}');"
 							<c:if test='${list.startPage<6 }'>disabled</c:if>>
 							Prev</li>
 							<!-- Page번호 시작 -->

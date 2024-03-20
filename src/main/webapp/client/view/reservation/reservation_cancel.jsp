@@ -53,7 +53,7 @@
           <li style="color: red;">※ 예약취소시 해당 데이터는 복구 되지 않습니다.</li>
         </ul>
       </label>
-    <form>
+    <form id="deleteForm">
       <fieldset class="mbship_box">
         <h3>예약확인</h3>
         <span class="agree_span">
@@ -77,7 +77,7 @@
         </ol>
         </span>
         <span class="span_buttons">
-        <button type="button" id="cancelBtn" class="next_btn1_1">예약취소</button>
+        <button type="button" onclick="delete_reserve(${reserve.ridx});" class="next_btn1_1">예약취소</button>
         </span>
       </fieldset>
     </form>
@@ -88,12 +88,22 @@
  <!-- 카피라이터 종료 -->
 </div>
     </div>
-    <script>
-    var cancelBtn = document.getElementById("cancelBtn");
-    cancelBtn.addEventListener("click",function(){
-    	alert("aa");
-    })
-    </script>
+<script>
+function delete_reserve(ridx){
+    if(confirm("사전방문 예약 취소하시겠습니까? 해당 데이터는 복구 되지 않습니다.")){
+        deleteForm.method="POST";
+        deleteForm.action="";
+
+        var hiddenInput = document.createElement("input");
+        hiddenInput.type="hidden";
+        hiddenInput.name="ridx";
+        hiddenInput.value = ridx;
+        
+        deleteForm.appendChild(hiddenInput);
+        deleteForm.submit();
+    }
+}
+</script>
     
 </body>
 </html>

@@ -99,6 +99,12 @@ public class AdminNoticeService {
 		return noticeRepository.delNotice(nidx);
 	}
 	
+	// 조회수 카운트++;
+	public int countUp(int nidx) {
+		return noticeRepository.update_count(nidx);
+	}
+	
+	
 	
 	
 	

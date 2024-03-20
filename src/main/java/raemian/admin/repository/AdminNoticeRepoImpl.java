@@ -54,5 +54,10 @@ public class AdminNoticeRepoImpl implements NoticeRepository{
 		return noticeMapper.findByIdx(nidx);
 	}
 
+	@Override
+	public int update_count(int nidx) {
+		return noticeMapper.update_count(nidx);
+	}
+
 
 }

@@ -226,6 +226,26 @@ public class ClientHomeController {
 		return "client/view/reservation/reservation_cancel";
 	}
 	
+	@PostMapping("/reserve/cancel")
+	public void reserveCancelForm(@RequestParam int ridx,HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8;");
+		PrintWriter pw = response.getWriter();
+		
+		int result = reserveService.cancel_reserve(ridx);
+		if(result<=0) {
+			pw.println("<script>alert('취소에 실패하였습니다.');"
+	        		+ "window.location.href='/raemian/client/reserve/modify';"
+	        		+ "</script>");
+	        pw.flush();
+		}
+		
+		pw.println("<script>"
+				+ "alert('해당 데이터가 정상적으로 삭제되었습니다.');"
+        		+ "window.location.href='/raemian/client/';"
+        		+ "</script>");
+        pw.flush();
+	}
+	
 	
 	
 	
