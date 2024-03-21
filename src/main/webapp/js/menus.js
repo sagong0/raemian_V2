@@ -1,3 +1,6 @@
+/**
+ * 
+
 let menu_btn = document.querySelector("#menus");
 
 menu_btn.addEventListener("click",function(e){
@@ -23,3 +26,5 @@ menu_btn.addEventListener("click",function(e){
      }
      location.href=go_page;
 });
+
+ */
