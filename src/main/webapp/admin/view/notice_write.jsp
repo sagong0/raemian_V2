@@ -38,7 +38,7 @@ AdminMember loginedMember = (AdminMember) session.getAttribute("loginMember");
 		       </li> 
 		       <li style="height:520px;">내용</li>
 		       <li style="height:520px; padding-top: 10px;">
-		       <textarea name="ncontent" class="notice_in in3"></textarea>
+		       <textarea id="editor1" name="ncontent" class="notice_in in3"></textarea>
 		       </li>
 		       <li>첨부파일</li>
 		       <li>
@@ -61,7 +61,10 @@ AdminMember loginedMember = (AdminMember) session.getAttribute("loginMember");
 <c:if test="${not empty failMsg}">
 <script>alert("${failMsg}");</script>
 </c:if>
-
+<script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+<script>
+CKEDITOR.replace("editor1");
+</script>
 <script src="../js/notice_write.js?<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>

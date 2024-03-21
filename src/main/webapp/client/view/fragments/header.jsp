@@ -26,7 +26,7 @@
 		    </ul>
     	</div>
         <div class="top">
-            <h1><a href="/" class="icon-hd-logo"></a></h1>
+            <h1><a href="" class="icon-hd-logo"></a></h1>
             <nav id="gnb">
                 <li>
                     <a href=""><span>사업정보</span></a>

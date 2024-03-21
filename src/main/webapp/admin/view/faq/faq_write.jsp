@@ -37,7 +37,7 @@ AdminMember loginedMember = (AdminMember) session.getAttribute("loginMember");
 		       <li><input type="text" name="fwriter" class="notice_in in2" value="<%=loginedMember.getAname() %>" readonly></li> 
 		       <li style="height:520px;">내용</li>
 		       <li style="height:520px; padding-top: 10px;">
-		       <textarea class="notice_in in3" name="fanswer"></textarea>
+		       <textarea id="editor1" class="notice_in in3" name="fanswer"></textarea>
 		       </li>
 	       </ol>
 	       <span class="notice_btns">
@@ -54,7 +54,10 @@ AdminMember loginedMember = (AdminMember) session.getAttribute("loginMember");
 <c:if test="${not empty failMsg}">
 <script>alert("${failMsg}");</script>
 </c:if>
-
+<script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+<script>
+CKEDITOR.replace("editor1");
+</script>
 <script src="../js/faq_write.js?v=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>
