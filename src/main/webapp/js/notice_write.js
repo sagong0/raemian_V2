@@ -2,6 +2,8 @@
  * 공지사항 글쓰기 PART
  */
 function noticeRegister(){
+	var editor = CKEDITOR.instances.editor1;
+	var ncontent = editor.getData();
 	var nfileInput = document.getElementById("nfile");
 	const maxSize = 1024 * 1024 * 2;
 	
@@ -12,8 +14,8 @@ function noticeRegister(){
 	else if(noticeForm.nwriter.value==""){
 		alert("글쓴이를 확인해주세요.");
 	}
-	else if(noticeForm.ncontent.value == ""){
-		alert("공지 내용을 입려해주세요.");
+	else if(ncontent.trim() == ""){
+		alert("공지 내용을 입력해주세요.");
 		noticeForm.ncontent.focus();
 	}
 	else if(nfileInput.files.length > 0){

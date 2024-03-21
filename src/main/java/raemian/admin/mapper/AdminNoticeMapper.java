@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import raemian.admin.domain.Notice;
-import raemian.admin.dto.NoticeForm;
 
 @Mapper
 public interface AdminNoticeMapper {
@@ -18,7 +17,7 @@ public interface AdminNoticeMapper {
 	
 	List<Notice>findBySearchWordAndCurrentPage(Map<String,Object> maps);
 	
-	int saveNotice(NoticeForm noticeForm);
+	int saveNotice(Notice notice);
 	
 	int delNotice(int nidx);
 	

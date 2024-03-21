@@ -1,9 +1,10 @@
 package raemian.common;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
-@Getter @ToString
+@Getter @Setter @ToString
 public class UploadFile {
 	
 	// 클라이언트 업로드 명

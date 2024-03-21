@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import raemian.admin.domain.Notice;
-import raemian.admin.dto.NoticeForm;
-import raemian.common.UploadFile;
 import raemian.common.repository.NoticeRepository;
 import raemian.common.service.CdnService;
 
@@ -73,19 +71,8 @@ public class AdminNoticeService {
 	}
 	
 	// 공지사항 저장
-	public int saveNotice(NoticeForm noticeForm){
-		int result = 0;
-		
-		// 첨부파일 없을때
-		if(noticeForm.getNfile() == null || noticeForm.getNfile().isEmpty()) {
-			result = noticeRepository.saveNotice(noticeForm);
-		} else {
-			// 첨부파일 있을 때 (notice save + CDN UPLOAD)
-			UploadFile uploadFile = cdnService.uploadFile(noticeForm.getNfile());
-			noticeForm.setStoreFileName(uploadFile.getStoreFileName());
-			result = noticeRepository.saveNotice(noticeForm);
-		}
-		return result;
+	public int saveNotice(Notice notice){
+		return noticeRepository.saveNotice(notice);
 	}
 	
 	

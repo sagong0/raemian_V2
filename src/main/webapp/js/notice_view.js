@@ -5,6 +5,6 @@ function to_noticeList(){
 /**
  * 첨부파일 다운로드 PART
  */
-function download_attach(nidx){
-	location.href=`../attach/${nidx}`;
+function redirectToUrl(url) {
+    window.location.href = url;
 }

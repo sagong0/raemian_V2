@@ -35,7 +35,7 @@
        <div class="text_in2">${notice.ncontent}</div>
        </li>       
        <li>첨부파일</li>
-       <li class="text_in" style="cursor: pointer;" onclick="download_attach(${notice.nidx});">${notice.nfile}</li>
+       <li class="text_in" style="cursor: pointer;" onclick="redirectToUrl('${notice.nfile}')">${notice.nfile}</li>
        </ol>
        <span class="notice_btns">
        <input type="button" value="목록" class="meno_btn2" onclick="to_noticeList();">

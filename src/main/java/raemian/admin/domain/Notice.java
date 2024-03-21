@@ -12,9 +12,11 @@ import raemian.common.UploadFile;
 public class Notice {
 	private int nidx;
 	private String ntitle, nwriter, ncontent;
+	private UploadFile nfile2;
+	
+	// DB로 부터 읽어오는 용도.
 	private String nfile;
-	private String originalFileName;
-	private String storeFileName;
+	
 	private int ncount;
 	private LocalDate nindate;	
 }

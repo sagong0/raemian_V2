@@ -14,15 +14,13 @@ import raemian.common.UploadFile;
 @Service
 public class CdnService {
 	
+	private String cdn_url = "http://sagong0.cdn1.cafe24.com/files/";
 	private String host = "iup.cdn1.cafe24.com";
     private String user = "sagong0";
     private String password = "wjd461352";
     private int port =21;
     
 	Logger log = LoggerFactory.getLogger(CdnService.class);
-	
-    @Value("${cdn_url}")
-    private String cdn_url;
     
     public UploadFile uploadFile(MultipartFile mfile) {
     	String originalFileName = mfile.getOriginalFilename();
