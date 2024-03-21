@@ -76,7 +76,7 @@ public class ClientHomeController {
 		}
 		
 		HttpSession session = requset.getSession();
-		session.setAttribute(SessionConst.LOGIN_MEMBER, optioanlMember.get());		
+		session.setAttribute(SessionConst.MAIN_MEMBER, optioanlMember.get());		
 		return "redirect:/client/";
 	}
 	
@@ -148,9 +148,23 @@ public class ClientHomeController {
 	
 	/**
 	 * 예약 페이지 
+	 * @throws IOException 
 	 */
 	@GetMapping("/reserve")
-	public String reserveFormCreate() {
+	public String reserveFormCreate(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=UTF-8;");
+		
+		Map<String, String> sessionInfoMap = extractSessionInfo(request);
+		Reserve reserve = reserveService.findBySessionInfo(sessionInfoMap, response);
+		if(reserve != null) {
+			PrintWriter pw = response.getWriter();
+			pw.println("<script>"
+					+ "alert('이미 예약내역이 존재합니다.');"
+	        		+ "window.location.href='/raemian/client/';"
+	        		+ "</script>");
+	        pw.flush();
+	        pw.close();
+		}
 		return "client/view/reservation/reserve_in";
 	}
 	
@@ -182,8 +196,18 @@ public class ClientHomeController {
 			HttpServletRequest request,
 			HttpServletResponse response,
 			Model model) throws IOException {
+		response.setContentType("text/html; charset=UTF-8;");
+		
 		Map<String, String> sessionInfoMap = extractSessionInfo(request);
 		Reserve reserve = reserveService.findBySessionInfo(sessionInfoMap,response);
+		if(reserve == null) {
+			PrintWriter pw = response.getWriter();
+			pw.println("<script>alert('예약된 내용이 없습니다.');"
+	        		+ "window.location.href='/raemian/client/reserve';"
+	        		+ "</script>");
+	        pw.flush();
+	        pw.close();
+		}
 		
 		model.addAttribute("reserve", reserve);
 		return "client/view/reservation/reservation_ck";
@@ -194,9 +218,11 @@ public class ClientHomeController {
 			HttpServletRequest request,
 			HttpServletResponse response
 			,@ModelAttribute ReserveForm reserveForm) throws IOException {
+		response.setContentType("text/html; charset=UTF-8;");
 		
 		Map<String, String> sessionInfoMap = extractSessionInfo(request);
 		Reserve reserve = reserveService.findBySessionInfo(sessionInfoMap, response);
+		
 		// 변경 불가능한 상태.
 		if(reserve.getRchance() == 0) {
 			PrintWriter pw = response.getWriter();
@@ -219,9 +245,19 @@ public class ClientHomeController {
 	public String reserveCancelFormCreate(HttpServletRequest request,
 			HttpServletResponse response,
 			Model model) throws IOException {
+		response.setContentType("text/html; charset=UTF-8;");
+		
 		Map<String, String> sessionInfoMap = extractSessionInfo(request);
-		// null 처리가 된 reserve
 		Reserve reserve = reserveService.findBySessionInfo(sessionInfoMap, response);
+		if(reserve == null) {
+			PrintWriter pw = response.getWriter();
+			pw.println("<script>alert('예약된 내용이 없습니다.');"
+	        		+ "window.location.href='/raemian/client/reserve';"
+	        		+ "</script>");
+	        pw.flush();
+	        pw.close();
+		}
+		
 		model.addAttribute("reserve", reserve);
 		return "client/view/reservation/reservation_cancel";
 	}
@@ -237,6 +273,7 @@ public class ClientHomeController {
 	        		+ "window.location.href='/raemian/client/reserve/modify';"
 	        		+ "</script>");
 	        pw.flush();
+	        pw.close();
 		}
 		
 		pw.println("<script>"
@@ -244,6 +281,7 @@ public class ClientHomeController {
         		+ "window.location.href='/raemian/client/';"
         		+ "</script>");
         pw.flush();
+        pw.close();
 	}
 	
 	
@@ -282,7 +320,7 @@ public class ClientHomeController {
 	
 	private Map<String,String> extractSessionInfo(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		Member member = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
+		Member member = (Member)session.getAttribute(SessionConst.MAIN_MEMBER);
 		String mid = member.getMid();
 		String mname = member.getMname();
 		

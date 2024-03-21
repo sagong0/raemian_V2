@@ -61,12 +61,10 @@ public class AdminMainController {
 			admins = adminService.findAdminListByCurrentPageAndSearchDto(currentPage, searchDto);
 			log.info("*********");
 			log.info("admins = {}", admins);
-			total = adminService.count_admins(aarea,searchDto);
 		} else {
 			admins = adminService.findAdminsByAreaAndPage(aarea, currentPage);
-			total = adminService.count_admins(aarea, searchDto);
 		}
-		
+		total = adminService.count_admins(aarea, searchDto);
 		model.addAttribute("admins", admins);
 		model.addAttribute("list", new Paging(total, currentPage, 5, 5, admins, null,null,null));
 		return "admin/view/config_main";

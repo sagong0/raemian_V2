@@ -59,9 +59,9 @@
         <span class="agree_span">
         <ol class="mbinfos">
         <li><em class="ck_font">■</em> 아이디</li>
-        <li>${sessionScope.loginMember.mid}</li>
+        <li>${sessionScope.mainMember.mid}</li>
         <li><em class="ck_font">■</em> 고객명</li>
-        <li>${sessionScope.loginMember.mname}</li>
+        <li>${sessionScope.mainMember.mname}</li>
         <li><em class="ck_font">■</em> 예약일자</li>
         <li>${reserve.rdate}</li>
         <li><em class="ck_font">■</em> 예약시간</li>

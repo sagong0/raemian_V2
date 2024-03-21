@@ -132,14 +132,16 @@ public class AdminService {
 		
 		// 소속 지역이 전체 일때
 		if(aarea == null || aarea.intern() == "" || aarea.isEmpty()) {
+			// 검색어 없을때 
 			if(searchDto == null || searchDto.getSearchVal()==null || searchDto.getSearchVal().isEmpty()) {
 				total = adminRepository.findAllAdmins().size();				
 			} else {
+				// 검색어 있을때
 				total = adminRepository.findBySearchDto(searchDto).size();
 			}
 		} 
 		else {
-			// 소속 지역을 선택 하였을 때
+			// 소속 지역을 선택 하였을 때 (이때는 검색어 항상!! 없음.)
 			admins = adminRepository.findAdminsByArea(aarea);
 			total = admins.size();
 		}

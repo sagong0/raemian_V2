@@ -18,7 +18,7 @@ public class ClientPageLoginCheckInterCeptor implements HandlerInterceptor{
 		String requestURI = request.getRequestURI();
 		HttpSession session = request.getSession(false);
 		
-		if(session == null || session.getAttribute(SessionConst.LOGIN_MEMBER) == null) { 
+		if(session == null || session.getAttribute(SessionConst.MAIN_MEMBER) == null) { 
             // 클라이언트 측에서 경고창을 띄우기 위해 JavaScript를 사용하여 출력
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter pw = response.getWriter();

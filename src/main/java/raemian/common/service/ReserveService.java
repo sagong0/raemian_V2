@@ -33,18 +33,7 @@ public class ReserveService {
 	}
 	
 	public Reserve findBySessionInfo(Map<String, String> sessionInfoMap, HttpServletResponse response) throws IOException {
-		response.setContentType("text/html; charset=UTF-8;");
-		
-		Reserve reserve = reserveRepository.findBySessionInfo(sessionInfoMap);
-		if(reserve == null) {
-			PrintWriter pw = response.getWriter();
-			pw.println("<script>alert('예약된 내용이 없습니다.');"
-	        		+ "window.location.href='/raemian/client/reserve';"
-	        		+ "</script>");
-	        pw.flush();
-		}
-		
-		return reserve;
+		return reserveRepository.findBySessionInfo(sessionInfoMap);
 	}
 	
 	/**
@@ -60,6 +49,7 @@ public class ReserveService {
 	        		+ "window.location.href='/raemian/client/reserve/modify';"
 	        		+ "</script>");
 	        pw.flush();    
+	        pw.close();
 	        return;
 		}
 		
@@ -68,6 +58,7 @@ public class ReserveService {
         		+ "window.location.href='/raemian/client/';"
         		+ "</script>");
         pw.flush();
+        pw.close();
 	}
 	
 	
@@ -91,6 +82,7 @@ public class ReserveService {
         		+ "window.location.href='/raemian/client/';"
         		+ "</script>");
         pw.flush();
+        pw.close();
 		return null;
 	}
 }
