@@ -81,11 +81,13 @@
        <span class="notice_btns">
        <input type="button" id="createBtn" value="세대타입 생성" class="meno_btn2"></span>
        <aside>
+       <c:if test="${not empty configs }">
         <div class="page_number">
            <ul>
            <li>1</li>
            </ul>
         </div>
+        </c:if>
        </aside>
        </section>
     </div>

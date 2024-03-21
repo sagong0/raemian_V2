@@ -74,6 +74,7 @@ List<Notice> notices = (List<Notice>) request.getAttribute("notices");
        <span class="notice_btns">
        <input type="button" value="글쓰기" onclick="noticeWriteForm();" class="meno_btn2"></span>
        <aside>
+       <c:if test="${not empty notices}">
         <div class="page_number">
            <ul>
            <c:set var="searchWord" value="${param.searchWord}" />
@@ -88,6 +89,7 @@ List<Notice> notices = (List<Notice>) request.getAttribute("notices");
 			<!-- Page번호 끝 -->      
            </ul>
         </div>
+        </c:if>
        </aside>
        </section>
     </div>

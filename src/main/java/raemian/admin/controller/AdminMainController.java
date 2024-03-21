@@ -59,8 +59,6 @@ public class AdminMainController {
 		
 		if(aarea == null || aarea.isEmpty() || aarea.equals("") || aarea.equals("all")) {
 			admins = adminService.findAdminListByCurrentPageAndSearchDto(currentPage, searchDto);
-			log.info("*********");
-			log.info("admins = {}", admins);
 		} else {
 			admins = adminService.findAdminsByAreaAndPage(aarea, currentPage);
 		}

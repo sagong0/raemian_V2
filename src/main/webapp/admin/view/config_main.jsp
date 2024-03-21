@@ -127,6 +127,7 @@ List<AdminMember> admins = (List<AdminMember>) request.getAttribute("admins");
 						</table>
 					</div>
 
+					<c:if test="${not empty admins}">
 					<div class="propagebt">
 						<ul>
 						<c:set var="aarea" value="${param.aarea}" />
@@ -150,6 +151,7 @@ List<AdminMember> admins = (List<AdminMember>) request.getAttribute("admins");
 							<!-- Next 끝 -->
 						</ul>
 					</div>
+					</c:if>
 				</div>
 			</form>
 			<!-- 관리자 리스트 끝 -->

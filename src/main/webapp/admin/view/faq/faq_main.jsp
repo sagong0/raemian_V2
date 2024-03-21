@@ -76,6 +76,7 @@
        </span>
        
        <aside>
+       <c:if test="${not empty faqs}">
         <div class="page_number">
            <ul>
            <c:set var="searchVal" value="${param.searchVal}" />
@@ -90,6 +91,7 @@
 			<!-- Page번호 끝 -->
            </ul>
         </div>
+        </c:if>
        </aside>
        </section>
     </div>

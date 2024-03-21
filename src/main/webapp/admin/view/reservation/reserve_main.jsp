@@ -74,12 +74,15 @@
        </ul>
        </c:if>
        
+       
        <aside>
+       <c:if test="${not empty reserves}">
         <div class="page_number">
            <ul>
            <li>1</li>      
            </ul>
         </div>
+        </c:if>
        </aside>
        </section>
     </div>

@@ -82,6 +82,7 @@
        
        
        <aside>
+       <c:if test="${not empty members}">
         <div class="page_number">
            <ul>
            <c:set var="aarea" value="${param.aarea}" />
@@ -95,6 +96,7 @@
 			<!-- Page번호 끝 -->
            </ul>
         </div>
+        </c:if>
        </aside>
        </section>
     </div>
