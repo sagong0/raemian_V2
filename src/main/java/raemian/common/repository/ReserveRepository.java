@@ -9,6 +9,8 @@ import raemian.common.dto.SearchDto;
 
 public interface ReserveRepository {
 	
+	List<Reserve> findAll();
+	
 	List<Reserve> findReserves(SearchDto searchDto);
 	
 	Reserve findBySessionInfo(Map<String,String> sessionInfoMap);

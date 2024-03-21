@@ -21,6 +21,12 @@ import raemian.common.repository.ClientMemberRepository;
 public class ClientMemberService {
 	private final ClientMemberRepository memberRepository;
 	
+	public List<Member> findAll(){
+		return memberRepository.findAll();
+	}
+	
+	
+	
 	public List<Member> findByCurrentPage(int currentPage){
 		int pNo = (currentPage-1) * 3;
 		return memberRepository.findAllByCurrentPage(pNo);

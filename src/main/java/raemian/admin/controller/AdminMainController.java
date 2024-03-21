@@ -17,22 +17,33 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import raemian.admin.domain.AdminMember;
 import raemian.admin.dto.StatusDto;
 import raemian.admin.service.AdminService;
+import raemian.client.domain.Member;
+import raemian.client.domain.Reserve;
 import raemian.common.Paging;
+import raemian.common.service.ClientMemberService;
+import raemian.common.service.ReserveService;
 import raemian.consts.SessionConst;
 
+
+@Slf4j
 @Controller
 @RequestMapping("/main")
 @RequiredArgsConstructor
 public class AdminMainController {
 	private final AdminService adminService;
+	private final ClientMemberService clientMemberService;
+	private final ReserveService reserveService;
 	
 	@GetMapping("/")
-	public String main(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		Object asdf = session.getAttribute(SessionConst.LOGIN_MEMBER);;
+	public String main(HttpServletRequest request, Model model) {
+		List<Member> members = clientMemberService.findAll();
+		List<Reserve> reserves = reserveService.findAll();
+		model.addAttribute("members", members);
+		model.addAttribute("reserves", reserves);
 		return "admin/view/admin_main";
 	}
 

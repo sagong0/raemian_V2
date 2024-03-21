@@ -10,6 +10,8 @@ import raemian.client.dto.JoinMemberForm;
 import raemian.common.dto.SearchDto;
 
 public interface ClientMemberRepository {
+	List<Member> findAll();
+	
 	List<Member> findAllByCurrentPage(int pNo);
 	
 	List<Member> findBySearchDtoAndCurrentPage(Map<String, Object> maps);

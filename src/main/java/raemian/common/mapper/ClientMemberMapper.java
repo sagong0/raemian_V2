@@ -12,6 +12,9 @@ import raemian.common.dto.SearchDto;
 
 @Mapper
 public interface ClientMemberMapper {
+	
+	List<Member> findAll();
+	
 	List<Member> findAllByCurrentPage(int pNo);
 	
 	List<Member> findBySearchDtoAndCurrentPage(Map<String, Object> maps);

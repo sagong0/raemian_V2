@@ -31,15 +31,15 @@
                 <li>
                     <a href=""><span>사업정보</span></a>
                     <ul>
-                        <li><a href="">지구안내</a></li>
-                        <li><a href="">입지안내</a></li>
+                        <li><a href="/raemian/client/sub01">지구안내</a></li>
+                        <li><a href="/raemian/client/sub02">입지안내</a></li>
                         <li><a href="">지역조감도</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href=""><span>단지정보</span></a>
                     <ul>
-                        <li><a href="">단지안내</a></li>
+                        <li><a href="/raemian/client/sub03">단지안내</a></li>
                         <li><a href="">시스템</a></li>
                         <li><a href="">단지배치도</a></li>
                         <li><a href="">동호배치도</a></li>

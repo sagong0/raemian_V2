@@ -8,6 +8,8 @@ import raemian.client.dto.ReserveForm;
 import raemian.common.dto.SearchDto;
 
 public interface ReserveMapper {
+	List<Reserve> findAll();
+	
 	List<Reserve> findReserves(SearchDto searchDto);
 	
 	Reserve findBySessionInfo(Map<String, String> sessionInfoMap);

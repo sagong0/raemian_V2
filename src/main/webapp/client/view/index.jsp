@@ -49,9 +49,11 @@
                     <ul class="nav nav-tabs box-nav m_flex_center">
                         <!-- 타입 출력 -->
                         <c:forEach var="config" items="${configs}" varStatus="loop">
+                        <c:if test="${config.ause eq 'O' }">
                         <li>
                             <button type="button" class="tab_showroom ${loop.first ? 'active' : '' }" data-num="${loop.index+1}">${config.atype}</button>
                         </li>
+                        </c:if>
                         </c:forEach>
                         <!-- 타입 출력 끝-->
                     </ul>
@@ -59,9 +61,9 @@
                 <div class="col-sm-12 col-xs-12">
                     <div class="iso-box">
                     <c:forEach var="config" items="${configs}" varStatus="loop">
+                    <c:if test="${config.ause eq 'O'}">
                         <div class="showroom" id="showroom_${loop.index +1}">
                             <span><img src="${config.aimgUrl }" class="img-responsive center-block" alt=""></span>
-
                             <div class="area-info col-sm-1">
                                 <h4>타입명</h4>
                                 <ul>
@@ -84,6 +86,7 @@
                                 </ul>
                                </div>
                             </div>
+                        </c:if>
                         </c:forEach>
                     </div>
                 </div>

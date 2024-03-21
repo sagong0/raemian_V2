@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../css/admin_css.css?v=30">
-<link rel="stylesheet" href="../css/page_default.css?v=25">
+<link rel="stylesheet" href="../css/admin_css.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" href="../css/page_default.css?v=<%=System.currentTimeMillis()%>">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
 <title>관리자 페이지</title>
 </head>
@@ -31,13 +32,18 @@
                 <li>이메일</li>
                 <li>주소</li>
             </ol>
+            
+            <c:if test="${not empty members}">
+            <c:forEach var="member" items="${members}" varStatus="loop">
             <ol class="bgcancel">
-                <li>hong</li>
-                <li>홍길동</li>
-                <li>01012345678</li>
-                <li>hong@nate.com</li>
-                <li style="text-align: left;">(05611) 서울시 종로구 종로3가 국일빌딩 5층</li>
-            </ol>  
+                <li>${member.mid}</li>
+                <li>${member.mname}</li>
+                <li>${member.mtel }</li>
+                <li>${member.memail }</li>
+                <li style="text-align: left;">${member.mstreetaddr}</li>
+            </ol>
+            </c:forEach>
+            </c:if>
             </li>
          </ul>
       </div>
@@ -64,14 +70,19 @@
                 <li>예약시간</li>
                 <li>예약인원</li>
             </ol>
+            
+            <c:if test="${not empty reserves}">
+            <c:forEach var="reserve" items="${reserves}" varStatus="loop">
             <ol class="bgcancel">
-                <li>hong</li>
-                <li>홍길동</li>
-                <li>01012345678</li>
-                <li>2023-10-09</li>
-                <li>10:00</li>
-                <li>2명</li>
-            </ol>  
+                <li>${reserve.rid}</li>
+                <li>${reserve.rname}</li>
+                <li>${reserve.rtel}</li>
+                <li>${reserve.rdate}</li>
+                <li>${reserve.rtime}</li>
+                <li>${reserve.rcount}명</li>
+            </ol>
+            </c:forEach>
+            </c:if>
             </li> 
          </ul>
       </div>

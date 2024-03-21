@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="raemian.common.mapper.ReserveMapper">
+	
+	<select id="findAll" resultType="raemian.client.domain.Reserve">
+	SELECT * FROM reservation
+	</select>
+
 	<select id="findReserves" parameterType="raemian.common.dto.SearchDto" resultType="raemian.client.domain.Reserve">
     SELECT * FROM reservation
     <where>

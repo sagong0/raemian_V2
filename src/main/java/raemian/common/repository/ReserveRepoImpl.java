@@ -16,6 +16,11 @@ import raemian.common.mapper.ReserveMapper;
 public class ReserveRepoImpl implements ReserveRepository{
 	
 	private final ReserveMapper reserveMapper;
+	
+	@Override
+	public List<Reserve> findAll() {
+		return reserveMapper.findAll();
+	}
 
 	@Override
 	public List<Reserve> findReserves(SearchDto searchDto) {

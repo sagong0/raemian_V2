@@ -24,6 +24,10 @@ public class ReserveService {
 	
 	private final ReserveRepository reserveRepository;
 	
+	public List<Reserve> findAll(){
+		return reserveRepository.findAll();
+	}
+	
 	public List<Reserve> findReserves(SearchDto searchDto){
 		return reserveRepository.findReserves(searchDto);
 	}

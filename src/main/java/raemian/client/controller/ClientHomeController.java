@@ -248,6 +248,23 @@ public class ClientHomeController {
 	
 	
 	
+	/**
+	 * 서브 페이지 01 , 02 ,03 
+	 */
+	@GetMapping("/sub01")
+	public String sub01Page() {
+		return "client/view/sub/sub01";
+	}
+	@GetMapping("/sub02")
+	public String sub02Page() {
+		return "client/view/sub/sub02";
+	}
+	@GetMapping("/sub03")
+	public String sub03Page() {
+		return "client/view/sub/sub03";
+	}
+	
+	
 	
 	/**
 	 * 편의 메소드 

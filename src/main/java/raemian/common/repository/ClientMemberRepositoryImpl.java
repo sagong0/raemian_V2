@@ -19,6 +19,11 @@ import raemian.common.mapper.ClientMemberMapper;
 public class ClientMemberRepositoryImpl implements ClientMemberRepository{
 	
 	private final ClientMemberMapper memberMapper;
+	
+	@Override
+	public List<Member> findAll() {
+		return memberMapper.findAll();
+	}
 
 	@Override
 	public List<Member> findAllByCurrentPage(int pNo) {
@@ -60,7 +65,5 @@ public class ClientMemberRepositoryImpl implements ClientMemberRepository{
 	public Optional<Member> findByLoginDto(AdminLoginDto loginDto) {
 		return Optional.ofNullable(memberMapper.findByLoginDto(loginDto));
 	}
-
-	
 
 }
