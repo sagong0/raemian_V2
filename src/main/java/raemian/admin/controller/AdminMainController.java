@@ -24,6 +24,7 @@ import raemian.admin.service.AdminService;
 import raemian.client.domain.Member;
 import raemian.client.domain.Reserve;
 import raemian.common.Paging;
+import raemian.common.dto.SearchDto;
 import raemian.common.service.ClientMemberService;
 import raemian.common.service.ReserveService;
 import raemian.consts.SessionConst;
@@ -50,23 +51,20 @@ public class AdminMainController {
 	@GetMapping("/config")
 	public String config_main(Model model, 
 			@RequestParam(required = false) String aarea,
-			@RequestParam(defaultValue = "1") int currentPage) {
-		/**
-		 * 1 -> 0,5
-		 * 2 -> 5,5
-		 * 3 -> 10,5
-		 * 4 -> 15,5
-		 * n -> (n-1) * 5
-		 */
+			@RequestParam(defaultValue = "1") int currentPage,
+			@ModelAttribute SearchDto searchDto) {
+		
 		int total = 0;
 		List<AdminMember> admins = null;
 		
 		if(aarea == null || aarea.isEmpty() || aarea.equals("") || aarea.equals("all")) {
-			admins = adminService.findAdminListByCurrentPage(currentPage);
-			total = adminService.count_admins(aarea);
+			admins = adminService.findAdminListByCurrentPageAndSearchDto(currentPage, searchDto);
+			log.info("*********");
+			log.info("admins = {}", admins);
+			total = adminService.count_admins(aarea,searchDto);
 		} else {
 			admins = adminService.findAdminsByAreaAndPage(aarea, currentPage);
-			total = adminService.count_admins(aarea);
+			total = adminService.count_admins(aarea, searchDto);
 		}
 		
 		model.addAttribute("admins", admins);

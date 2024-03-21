@@ -53,6 +53,28 @@ if(selectbox_aarea){
 	}	
 }
 
-function adminPagination(pNo, aarea){
-	location.href="../main/config?currentPage="+pNo+"&aarea="+aarea;
+/**
+ * 전체 버튼 클릭시 
+ */
+var allBtn = document.getElementById("allBtn");
+allBtn.addEventListener("click",()=>{
+	location.href="/raemian/main/config";
+});
+
+
+/**
+ * 검색 PART
+ */
+var searchBtn = document.getElementById("searchBtn");
+searchBtn.addEventListener("click", function(e){
+	e.preventDefault();
+	var searchType = document.getElementById("searchType").value;
+	var searchVal = document.getElementById("searchVal").value;
+	location.href="/raemian/main/config?searchType="+searchType+"&searchVal="+searchVal;
+});
+
+
+
+function adminPagination(pNo, aarea,searchType,searchVal){
+	location.href="../main/config?currentPage="+pNo+"&aarea="+aarea+"&searchType="+searchType+"&searchVal="+searchVal;
 }

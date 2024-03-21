@@ -32,7 +32,7 @@ List<AdminMember> admins = (List<AdminMember>) request.getAttribute("admins");
 					<div class="procho">
 						<ul>
 							<li class="prochoL procfont">소속</li>
-							<li class="prochoL ">
+							<li class="prochoL">
 							<select class="adlistcsel1" name="aarea" id="aarea">
 				                <option value="all">전체</option>
 				                <option value="본사">본사</option>
@@ -57,14 +57,18 @@ List<AdminMember> admins = (List<AdminMember>) request.getAttribute("admins");
 					<div class="procho">
 						<ul>
 							<li class="prochoL procfont">검색형식</li>
-							<li class="prochoL "><select class="adlistcsel1" name="search_part">
-									<option>이름</option>
-									<option>아이디</option>
-									<option>연락처</option>
-							</select></li>
-							<li class="prochoL"><input type="text" class="adlistcsel1"></li>
-							<li class="prochoL"><input type="submit" class="proclick" value="검색"></li>
-							<li class="prochoL"><button type="button" class="proclick">전체</button></li>
+							<li class="prochoL ">
+								<select id="searchType" class="adlistcsel1" name="search_part">
+										<option value="이름">이름</option>
+										<option value="아이디">아이디</option>
+										<option value="연락처">연락처</option>
+								</select>
+							</li>
+							<li class="prochoL">
+							<input type="text" id="searchVal" name="searchVal" class="adlistcsel1">
+							</li>
+							<li class="prochoL"><input type="submit" id="searchBtn" class="proclick" value="검색"></li>
+							<li class="prochoL"><button type="button" id="allBtn" class="proclick">전체</button></li>
 						</ul>
 					</div>
 					<div class="protaball">
@@ -128,19 +132,19 @@ List<AdminMember> admins = (List<AdminMember>) request.getAttribute("admins");
 						<c:set var="aarea" value="${param.aarea}" />
 						<!-- Previous 시작 -->
 							<li style="color: white;" 
-							onclick="adminPagination(${list.startPage > 5 ? list.startPage - 5 : 1 },'${not empty aarea ? aarea : ''}');"
+							onclick="adminPagination(${list.startPage > 5 ? list.startPage - 5 : 1 },'${not empty aarea ? aarea : ''}','${not empty param.searchType ? param.searchType : ''}','${not empty param.searchVal ? param.searchVal : ''}');"
 							<c:if test='${list.startPage<6 }'>disabled</c:if>>
 							Prev</li>
 							<!-- Page번호 시작 -->
 							<c:forEach var="pNo" begin="${list.startPage}" end="${list.endPage}" step="1">
-								<li style="color:white;"onclick="adminPagination(${pNo},'${not empty aarea ? aarea : ''}');" 
+								<li style="color:white;"onclick="adminPagination(${pNo},'${not empty aarea ? aarea : ''}','${not empty param.searchType ? param.searchType : ''}','${not empty param.searchVal ? param.searchVal : ''}');" 
 								<c:if test='${param.currentPage eq pNo }'>active</c:if>>
 								${pNo}</li>
 							</c:forEach>
 							<!-- Page번호 끝 -->
 							<!-- Next 시작 -->
 							<li style="color: white;"
-							onclick="adminPagination(${list.totalPages < 5 ? list.endPage : list.startPage+5 },'${not empty aarea ? aarea : ''}');" 
+							onclick="adminPagination(${list.totalPages < 5 ? list.endPage : list.startPage+5 },'${not empty aarea ? aarea : ''}','${not empty param.searchType ? param.searchType : ''}','${not empty param.searchVal ? param.searchVal : ''}');" 
 							<c:if test='${list.endPage>=list.totalPages }'>disabled</c:if> >
 							Next</li>
 							<!-- Next 끝 -->

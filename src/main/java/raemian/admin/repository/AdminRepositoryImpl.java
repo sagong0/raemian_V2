@@ -11,6 +11,7 @@ import raemian.admin.domain.AdminMember;
 import raemian.admin.dto.AdminLoginDto;
 import raemian.admin.dto.JoinAdminDto;
 import raemian.admin.mapper.AdminMapper;
+import raemian.common.dto.SearchDto;
 
 
 @Repository
@@ -81,8 +82,13 @@ public class AdminRepositoryImpl implements AdminRepository{
 	}
 
 	@Override
-	public List<AdminMember> findAdminsByCurrentPage(int currentPage) {
-		return adminMapper.findAdminsByCurrentPage(currentPage);
+	public List<AdminMember> findAdminsByCurrentPageAndSearchDto(Map<String, Object> maps) {
+		return adminMapper.findAdminsByCurrentPageAndSearchDto(maps);
+	}
+
+	@Override
+	public List<AdminMember> findBySearchDto(SearchDto searchDto) {
+		return adminMapper.findBySearchDto(searchDto);
 	}
 
 }

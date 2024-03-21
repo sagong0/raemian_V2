@@ -6,10 +6,53 @@
 	select * from ad_membership
 	</select>
 	
-	<select id="findAdminsByCurrentPage" resultType="raemian.admin.domain.AdminMember">
+	<!-- <select id="findAdminsByCurrentPageAndSearchDto" parameterType="Map"
+	 resultType="raemian.admin.domain.AdminMember">
 	SELECT * FROM ad_membership
 	LIMIT #{pNo},5;
-	</select>
+	</select> -->
+	
+	<select id="findAdminsByCurrentPageAndSearchDto" parameterType="Map" resultType="raemian.admin.domain.AdminMember">
+    SELECT * FROM ad_membership
+    <where>
+        <if test="searchDto.searchVal != null and searchDto.searchVal != ''">
+            AND
+            <choose>
+                <when test="searchDto.searchType == '아이디'">
+                    aid like concat('%',#{searchDto.searchVal},'%')
+                </when>
+                <when test="searchDto.searchType == '이름'">
+                    aname like concat('%',#{searchDto.searchVal},'%')
+                </when>
+                <when test="searchDto.searchType == '연락처'">
+                    atel like concat('%',#{searchDto.searchVal},'%')
+                </when>
+            </choose>
+        </if>
+    </where>
+    LIMIT #{pNo}, 5;
+</select>
+
+<select id="findBySearchDto" parameterType="raemian.common.dto.SearchDto" resultType="raemian.admin.domain.AdminMember">
+SELECT * FROM ad_membership
+<where>
+        <if test="searchVal != null and searchVal != ''">
+            AND
+            <choose>
+                <when test="searchType == '아이디'">
+                    aid like concat('%',#{searchVal},'%')
+                </when>
+                <when test="searchType == '이름'">
+                    aname like concat('%',#{searchVal},'%')
+                </when>
+                <when test="searchType == '연락처'">
+                    atel like concat('%',#{searchVal},'%')
+                </when>
+            </choose>
+        </if>
+    </where>
+</select>
+	
 	
 	<select id="findAdminsByArea" resultType="raemian.admin.domain.AdminMember">
 	SELECT * FROM ad_membership

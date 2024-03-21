@@ -14,6 +14,7 @@ import raemian.admin.dto.AdminLoginDto;
 import raemian.admin.dto.JoinAdminDto;
 import raemian.admin.dto.StatusDto;
 import raemian.admin.repository.AdminRepository;
+import raemian.common.dto.SearchDto;
 
 @Service
 @RequiredArgsConstructor
@@ -28,9 +29,13 @@ public class AdminService {
 	/**
 	 * currentPage -> (currentPage-1) * 5
 	 */
-	public List<AdminMember> findAdminListByCurrentPage(int currentPage){
+	public List<AdminMember> findAdminListByCurrentPageAndSearchDto(int currentPage, SearchDto searchDto){
 		int pNo = (currentPage - 1) * 5;
-		return adminRepository.findAdminsByCurrentPage(pNo);
+		Map<String, Object> maps = new HashMap<String, Object>(); 
+		maps.put("pNo", pNo);
+		maps.put("searchDto", searchDto);
+		
+		return adminRepository.findAdminsByCurrentPageAndSearchDto(maps);
 	}
 	
 	// 소속 지역에 해당하는 관리자 찾기
@@ -120,15 +125,18 @@ public class AdminService {
 	
 	
 	
-	public int count_admins(String aarea) {
+	public int count_admins(String aarea,SearchDto searchDto) {
 		
 		int total = 0;
 		List<AdminMember> admins = null;
 		
 		// 소속 지역이 전체 일때
 		if(aarea == null || aarea.intern() == "" || aarea.isEmpty()) {
-			admins = adminRepository.findAllAdmins();
-			total = admins.size();
+			if(searchDto == null || searchDto.getSearchVal()==null || searchDto.getSearchVal().isEmpty()) {
+				total = adminRepository.findAllAdmins().size();				
+			} else {
+				total = adminRepository.findBySearchDto(searchDto).size();
+			}
 		} 
 		else {
 			// 소속 지역을 선택 하였을 때

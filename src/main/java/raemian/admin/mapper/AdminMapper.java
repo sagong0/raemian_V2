@@ -8,12 +8,15 @@ import org.apache.ibatis.annotations.Mapper;
 import raemian.admin.domain.AdminMember;
 import raemian.admin.dto.AdminLoginDto;
 import raemian.admin.dto.JoinAdminDto;
+import raemian.common.dto.SearchDto;
 
 @Mapper
 public interface AdminMapper {
 	List<AdminMember> findAllAdmins();
 	
-	List<AdminMember> findAdminsByCurrentPage(int currentPage);
+	List<AdminMember> findBySearchDto(SearchDto searchDto);
+	
+	List<AdminMember> findAdminsByCurrentPageAndSearchDto(Map<String, Object> maps);
 	
 	List<AdminMember> findAdminsByArea(String aarea);
 	

@@ -25,12 +25,12 @@
 	
 	
 	<!-- 프로퍼티 홀더 설정 -->
-    <beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <!-- <beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
          <beans:property name="locations">
             <beans:list>
                 <beans:value>classpath:application.properties</beans:value>
             </beans:list>
         </beans:property>
-    </beans:bean>
+    </beans:bean> -->
 	
 </beans:beans>

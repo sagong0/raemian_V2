@@ -7,15 +7,18 @@ import java.util.Optional;
 import raemian.admin.domain.AdminMember;
 import raemian.admin.dto.AdminLoginDto;
 import raemian.admin.dto.JoinAdminDto;
+import raemian.common.dto.SearchDto;
 
 public interface AdminRepository {
 	List<AdminMember> findAllAdmins();
 	
-	List<AdminMember> findAdminsByCurrentPage(int currentPage);
+	List<AdminMember> findAdminsByCurrentPageAndSearchDto(Map<String, Object> maps);
 	
 	List<AdminMember> findAdminsByArea(String aarea);
 	
 	List<AdminMember> findAdminsByAreaAndPage(Map<String, Object> maps);
+	
+	List<AdminMember> findBySearchDto(SearchDto searchDto);
 	
 	Optional<AdminMember> findOne(String adminId);
 	
